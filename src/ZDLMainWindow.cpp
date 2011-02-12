@@ -1,6 +1,6 @@
 /**
-* @file ZDLApp.cpp
-* ZDLApp class.
+* @file ZDLMainWindow.cpp
+* ZDLMainWindow class.
 *
 * @author Ryan "BioHazard" Turner <zdbiohazard2@gmail.com>
 * @author Cody "QBasicer" Harris <charris@vectec.net>
@@ -15,23 +15,20 @@
 * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 * FOR A PARTICULAR PURPOSE. See the GNU General Public License for details.
 */
-#include "ZDLApp.h"
+#include "ZDLMainWindow.h"
 
 /**
-* Instance generator for ZDLApp.
+* Instance generator for ZDLMainWindow.
 *
-* @param  argc  Number of command line paramaters to feed to ZDLApp().
-* @param  argv  List of command line paramaters to feed to ZDLApp().
-*
-* @return New ZDLApp object on success, NULL on failure.
+* @return New ZDLMainWindow object on success, NULL on failure.
 */
-ZDLApp* ZDLApp::newInstance( int argc, char **argv ){
-	ZDLApp *newApp = new ZDLApp(argc, argv);
-	if( newApp->getInitOK() == FALSE ){
+ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
+	ZDLMainWindow *newMainWindow = new ZDLMainWindow(windowTitle);
+	if( newMainWindow->getInitOK() == FALSE ){
 		// TODO: Error report here.
 		return NULL;
 	}
-	return newApp;
+	return newMainWindow;
 }
 
 /**
@@ -39,26 +36,25 @@ ZDLApp* ZDLApp::newInstance( int argc, char **argv ){
 *
 * @return the object's initStatus.
 */
-bool ZDLApp::getInitOK( ){
+bool ZDLMainWindow::getInitOK( ){
 	return this->initOK;
 }
 
 /**
-* Constructor for ZDLApp.
+* Constructor for ZDLMainWindow.
 *
-* @param  argc  Number of command line paramaters.
-* @param  argv  List of command line paramaters.
+* @param  windowTitle  The new window's title.
 */
-ZDLApp::ZDLApp( int argc, char **argv ) : QApplication( argc, argv ){
+ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	this->initOK = FALSE; // Initialize the object status.
+	this->setWindowTitle(windowTitle);
 
-	// Set-up the main window.
-	this->mainWindow = ZDLMainWindow::newInstance("ZDL 4-super-duper-pre-alpha");
-	if( this->mainWindow == NULL ){ // Check if the object is okay.
-		// TODO: Error report here.
-		return;
-	}
+	// Set up the main layout.
+	QVBoxLayout *layoutMain = new QVBoxLayout();
+	this->setLayout(layoutMain);
 
+	// Time to show it and get outta' here.
+	this->show();
 	this->initOK = TRUE; // Class is good to go!
 }
 

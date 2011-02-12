@@ -1,6 +1,6 @@
 /**
-* @file ZDLApp.h
-* ZDLApp class header.
+* @file ZDLMainWindow.h
+* ZDLMainWindow class header.
 *
 * @author Ryan "BioHazard" Turner <zdbiohazard2@gmail.com>
 * @author Cody "QBasicer" Harris <charris@vectec.net>
@@ -15,30 +15,32 @@
 * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 * FOR A PARTICULAR PURPOSE. See the GNU General Public License for details.
 */
-#ifndef ZDLAPP_H
-#define ZDLAPP_H
+#ifndef ZDLMAINWINDOW_H
+#define ZDLMAINWINDOW_H
 
-#include "ZDLMainWindow.h"
-#include <QtGui/QApplication>
+#include <QtGui/QWidget>
+#include <QtGui/QVBoxLayout>
 
 /**
-* @class ZDLApp
-* Main application class.
+* @class ZDLMainWindow
+* Main user interface class.
+*
+* Yes, I know it's not based on QMainWindow. When it needs a menubar, statusbar,
+* or dock, I'll think about changing it. :P
 */
-class ZDLApp : public QApplication {
+class ZDLMainWindow : public QWidget {
 	public:
 	// Public Functions.
-		static ZDLApp* newInstance( int argc, char **argv );
+		static ZDLMainWindow* newInstance( QString windowTitle );
 
 	protected:
 	// Protected Variables.
-		bool           initOK;     ///< Object initialization status.
-		ZDLMainWindow *mainWindow; ///< Main window.
+		bool initOK; ///< Object initialization status.
 
 	// Protected Functions.
-		bool getInitOK( );
-		        ZDLApp( int argc, char **argv );
+		bool     getInitOK( );
+		     ZDLMainWindow( QString windowTitle );
 };
 
-#endif // ZDLAPP_H
+#endif // ZDLMAINWINDOW_H
 
