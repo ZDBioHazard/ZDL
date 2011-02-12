@@ -1,0 +1,18 @@
+# Project Details
+PROJECT_NAME   = ZDL
+PROJECT_NUMBER = 3.8.x
+
+# Files
+INPUT            = src/
+OUTPUT_DIRECTORY = doc/
+
+# Generation Options
+JAVADOC_AUTOBRIEF = YES
+EXTRACT_PRIVATE   = YES
+
+# Display/Misc Preferences
+GENERATE_LATEX = NO
+SEARCHENGINE   = NO
+TAB_SIZE       = 4
+QUIET          = YES
+

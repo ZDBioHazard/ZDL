@@ -20,6 +20,8 @@
 /**
 * Instance generator for ZDLMainWindow.
 *
+* @param  windowTitle  The new window's title.
+*
 * @return New ZDLMainWindow object on success, NULL on failure.
 */
 ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
