@@ -53,7 +53,28 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	QVBoxLayout *layoutMain = new QVBoxLayout();
 	this->setLayout(layoutMain);
 
-	// Time to show it and get outta' here.
+	// TODO: Create the interface tabs.
+
+	// Create the buttons down at the bottom.
+	QHBoxLayout *layoutButtons = new QHBoxLayout();
+	       this->buttonExit    = new QPushButton("Exit", this);
+	       this->buttonZDL     = new QPushButton("ZDL", this);
+	QSpacerItem *spacerButtons = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+	       this->buttonLaunch  = new QPushButton("Launch", this);
+	// Make sure all the widgets got created properly.
+	if( !layoutButtons    || !spacerButtons   ||
+	    !this->buttonExit || !this->buttonZDL || !this->buttonLaunch ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	// Aaand add them to the layout.
+	layoutButtons->addWidget(buttonExit);
+	layoutButtons->addWidget(buttonZDL);
+	layoutButtons->addItem(spacerButtons);
+	layoutButtons->addWidget(buttonLaunch);
+	layoutMain->addLayout(layoutButtons);
+
+	// Well now, wasn't that fun? Time to show the window and get outta' here.
 	this->show();
 	this->initOK = TRUE; // Class is good to go!
 }

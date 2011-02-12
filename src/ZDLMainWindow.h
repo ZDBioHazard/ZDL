@@ -20,6 +20,9 @@
 
 #include <QtGui/QWidget>
 #include <QtGui/QVBoxLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QPushButton>
+#include <QtGui/QSpacerItem>
 
 /**
 * @class ZDLMainWindow
@@ -36,6 +39,11 @@ class ZDLMainWindow : public QWidget {
 	protected:
 	// Protected Variables.
 		bool initOK; ///< Object initialization status.
+
+	// Protected Widgets.
+		QPushButton *buttonExit;   ///< Exit button.
+		QPushButton *buttonZDL;    ///< ZDL button.
+		QPushButton *buttonLaunch; ///< Launch button.
 
 	// Protected Functions.
 		bool     getInitOK( );
