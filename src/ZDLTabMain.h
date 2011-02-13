@@ -25,6 +25,7 @@
 #include <QtGui/QListWidget>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
+#include <QtGui/QComboBox>
 #include <QtGui/QLineEdit>
 
 /**
@@ -37,10 +38,24 @@ class ZDLTabMain : public ZDLTab {
 		static ZDLTabMain* newInstance( QWidget *parentWidget );
 
 	protected:
+	// Protected Enums.
+		/// Skill levels shown in the skill combo box.
+		enum SkillLevels {
+			SKILL_VERY_EASY,
+			SKILL_EASY,
+			SKILL_NORMAL,
+			SKILL_HARD,
+			SKILL_STUPID_HARD
+		};
+
 	// Protected Widgets.
 		QListWidget *listFiles;         ///< Files list.
 		QPushButton *buttonFilesAdd;    ///< "Add" button on the Files list.
 		QPushButton *buttonFilesRemove; ///< "Remove" button on the Files list.
+		QComboBox   *comboEngines;      ///< Engines selector.
+		QListWidget *listIWADs;         ///< IWAD list.
+		QLineEdit   *editWarp;          ///< Warp box.
+		QComboBox   *comboSkill;        ///< Skill selector.
 		QLineEdit   *editExtraArgs;     ///< Extra Arguments box.
 
 	// Protected Functions.

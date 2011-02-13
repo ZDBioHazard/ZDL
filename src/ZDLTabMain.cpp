@@ -42,6 +42,11 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// This tab be called Jimmy!
 	this->tabLabel = "General";
 
+	//
+	// NOTE: The indentation in this function sort-of
+	//       illustrates how the widgets are nested.
+	//
+
 	// Set up the main layout.
 	QVBoxLayout *layoutTab = new QVBoxLayout();
 	layoutTab->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
@@ -77,6 +82,60 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutFilesButtons->addWidget(this->buttonFilesRemove);
 	layoutColumns->addLayout(layoutFiles);
 
+	// Right Column
+	QVBoxLayout *layoutRightColumn = new QVBoxLayout();
+	layoutColumns->addLayout(layoutRightColumn);
+
+		// Engine list.
+		QLabelLayout *labelEngines = new QLabelLayout("Game Engine", this);
+			    this->comboEngines = new QComboBox(this);
+		if( !labelEngines || !this->comboEngines ){
+		// TODO: Error report here.
+			return; // Bail out.
+		}
+		labelEngines->addWidget(this->comboEngines);
+		layoutRightColumn->addLayout(labelEngines);
+
+		// IWAD list.
+		QLabelLayout *labelIWADs = new QLabelLayout("Game IWAD", this);
+			    this->listIWADs  = new QListWidget(this);
+		if( !labelIWADs || !this->listIWADs ){
+			// TODO: Error report here.
+			return; // Bail out.
+		}
+		labelIWADs->addWidget(this->listIWADs);
+		layoutRightColumn->addLayout(labelIWADs);
+
+		// Warp/Skill box.
+		QHBoxLayout *layoutWarpSkill = new QHBoxLayout();
+		layoutRightColumn->addLayout(layoutWarpSkill);
+
+			// Warp box.
+			QLabelLayout *labelWarp = new QLabelLayout("Warp to Map", this);
+					this->editWarp  = new QLineEdit(this);
+			if( !labelWarp || !this->editWarp ){
+				// TODO: Error report here.
+				return; // Bail out.
+			}
+			editWarp->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
+			labelWarp->addWidget(this->editWarp);
+			layoutWarpSkill->addLayout(labelWarp);
+
+			// Skill box.
+			QLabelLayout *labelSkill = new QLabelLayout("Skill Level", this);
+					this->comboSkill = new QComboBox(this);
+			if( !labelSkill || !this->comboSkill ){
+				// TODO: Error report here.
+				return; // Bail out.
+			}
+			// TODO: I don't like this list being here for some reason.
+			QStringList strSkills;
+			strSkills << "Very Easy" << "Easy" << "Normal" << "Hard" << "Stupid-Hard";
+			this->comboSkill->addItems(strSkills);
+			this->comboSkill->setCurrentIndex(SKILL_NORMAL);
+			labelSkill->addWidget(this->comboSkill);
+			layoutWarpSkill->addLayout(labelSkill);
+
 	// Extra Args box.
 	QLabelLayout *labelExtraArgs = new QLabelLayout("Extra Command-Line Arguments", this);
 	        this->editExtraArgs  = new QLineEdit(this);
@@ -87,7 +146,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	labelExtraArgs->addWidget(this->editExtraArgs);
 	layoutTab->addLayout(labelExtraArgs);
 
-	// Looks like we're done here.
+	// Looks like we're done here. ...Finally.
 	this->initOK = TRUE; // Class is good to go!
 }
 
