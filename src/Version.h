@@ -1,6 +1,6 @@
 /**
-* @file ZDLApp.h
-* ZDLApp class header.
+* @file Version.h
+* Version information.
 *
 * @author Ryan "BioHazard" Turner <zdbiohazard2@gmail.com>
 * @author Cody "QBasicer" Harris <charris@vectec.net>
@@ -15,31 +15,32 @@
 * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 * FOR A PARTICULAR PURPOSE. See the GNU General Public License for details.
 */
-#ifndef ZDLAPP_H
-#define ZDLAPP_H
+#ifndef VERSION_H
+#define VERSION_H
 
-#include "Version.h"
-#include "ZDLMainWindow.h"
-#include <QtGui/QApplication>
+#ifndef ZDL_VERSION
+	#define ZDL_VERSION "3.8.7"
+#endif // ZDL_VERSION
 
-/**
-* @class ZDLApp
-* Main application class.
-*/
-class ZDLApp : public QApplication {
-	public:
-	// Public Functions.
-		static ZDLApp* newInstance( int argc, char **argv );
+#ifndef ZDL_REVISION
+	#define ZDL_REVISION "Custom"
+#endif // ZDL_REVISION
 
-	protected:
-	// Protected Variables.
-		bool           initOK;     ///< Object initialization status.
-		ZDLMainWindow *mainWindow; ///< Main window.
+#ifndef ZDL_COMPILEDATE
+	#define ZDL_COMPILEDATE "Unknown Compile Date"
+#endif // ZDL_COMPILEDATE
 
-	// Protected Functions.
-		bool getInitOK( );
-		        ZDLApp( int argc, char **argv );
-};
+#ifndef ZDL_BUILDINFO
+	#define ZDL_BUILDINFO "Unknown Build"
+#endif // ZDL_BUILDINFO
 
-#endif // ZDLAPP_H
+#ifndef ZDL_FULLVERSION
+	#define ZDL_FULLVERSION ZDL_VERSION" ("ZDL_REVISION")"
+#endif // ZDL_FULLVERSION
+
+#ifndef ZDL_APPTITLE
+	#define ZDL_APPTITLE "ZDL "ZDL_FULLVERSION
+#endif // ZDL_APPTITLE
+
+#endif // VERSION_H
 

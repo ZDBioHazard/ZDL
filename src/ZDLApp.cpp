@@ -53,7 +53,7 @@ ZDLApp::ZDLApp( int argc, char **argv ) : QApplication( argc, argv ){
 	this->initOK = FALSE; // Initialize the object status.
 
 	// Set-up the main window.
-	this->mainWindow = ZDLMainWindow::newInstance("ZDL 4-super-duper-pre-alpha");
+	this->mainWindow = ZDLMainWindow::newInstance(ZDL_APPTITLE);
 	if( this->mainWindow == NULL ){ // Check if the object is okay.
 		// TODO: Error report here.
 		return;

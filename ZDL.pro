@@ -3,7 +3,12 @@ CONFIG = qt
     MOC_DIR = ./obj/
 OBJECTS_DIR = ./obj/
 
-HEADERS = src/ZDLApp.h \
+DEFINES += ZDL_COMPILEDATE="\"\\\"`date +'%a, %b %d %Y %H:%M:%S %Z'`\\\"\""
+DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo`\\\"\""
+# TODO: Add a define for ZDL_REVISION that gets the Git hash or something.
+
+HEADERS = src/Version.h \
+          src/ZDLApp.h \
           src/ZDLMainWindow.h
 
 SOURCES = src/ZDL.cpp \
