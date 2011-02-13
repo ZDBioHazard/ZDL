@@ -47,6 +47,36 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
 	this->setLayout(layoutTab);
 
+	// Set-up the main columns.
+	// TODO: It would be cool if this could be a QSplitter, but QSplitter
+	//       doesn't seem to support adding layouts, only widgets.
+	QHBoxLayout *layoutColumns = new QHBoxLayout();
+	layoutTab->addLayout(layoutColumns);
+
+	// Left Column.
+	// External Files list.
+	QVBoxLayout  *layoutFiles        = new QVBoxLayout();
+	QLabelLayout *labelFiles         = new QLabelLayout("External Files", this);
+	        this->listFiles          = new QListWidget(this);
+	QHBoxLayout  *layoutFilesButtons = new QHBoxLayout();
+	        this->buttonFilesAdd     = new QPushButton("Add", this);
+	QSpacerItem  *spacerFilesButtons = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
+	        this->buttonFilesRemove  = new QPushButton("Remove", this);
+	if( !layoutFiles             || !labelFiles           ||
+	    !layoutFilesButtons      || !spacerFilesButtons   ||
+	    !this->listFiles         || !this->buttonFilesAdd ||
+	    !this->buttonFilesRemove ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	layoutFiles->addLayout(labelFiles);
+	labelFiles->addWidget(this->listFiles);
+	layoutFiles->addLayout(layoutFilesButtons);
+	layoutFilesButtons->addWidget(this->buttonFilesAdd);
+	layoutFilesButtons->addItem(spacerFilesButtons);
+	layoutFilesButtons->addWidget(this->buttonFilesRemove);
+	layoutColumns->addLayout(layoutFiles);
+
 	// Extra Args box.
 	QLabelLayout *labelExtraArgs = new QLabelLayout("Extra Command-Line Arguments", this);
 	        this->editExtraArgs  = new QLineEdit(this);

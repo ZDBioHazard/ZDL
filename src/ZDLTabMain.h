@@ -21,6 +21,10 @@
 #include "ZDLTab.h"
 #include "QLabelLayout.h"
 #include <QtGui/QVBoxLayout>
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QListWidget>
+#include <QtGui/QPushButton>
+#include <QtGui/QSpacerItem>
 #include <QtGui/QLineEdit>
 
 /**
@@ -34,7 +38,10 @@ class ZDLTabMain : public ZDLTab {
 
 	protected:
 	// Protected Widgets.
-		QLineEdit *editExtraArgs; ///< Extra Arguments box.
+		QListWidget *listFiles;         ///< Files list.
+		QPushButton *buttonFilesAdd;    ///< "Add" button on the Files list.
+		QPushButton *buttonFilesRemove; ///< "Remove" button on the Files list.
+		QLineEdit   *editExtraArgs;     ///< Extra Arguments box.
 
 	// Protected Functions.
 		ZDLTabMain( QWidget *parentWidget );
