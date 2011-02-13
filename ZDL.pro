@@ -8,6 +8,7 @@ DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo`\\\"\""
 # TODO: Add a define for ZDL_REVISION that gets the Git hash or something.
 
 HEADERS = src/Version.h \
+          src/QLabelLayout.h \
           src/ZDLApp.h \
           src/ZDLMainWindow.h \
           src/ZDLTab.h \
