@@ -42,6 +42,22 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// This tab be called Jimmy!
 	this->tabLabel = "General";
 
+	// Set up the main layout.
+	QVBoxLayout *layoutTab = new QVBoxLayout();
+	layoutTab->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
+	this->setLayout(layoutTab);
+
+	// Extra Args box.
+	QLabelLayout *labelExtraArgs = new QLabelLayout("Extra Command-Line Arguments", this);
+	        this->editExtraArgs  = new QLineEdit(this);
+	if( !labelExtraArgs || !this->editExtraArgs ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	labelExtraArgs->addWidget(this->editExtraArgs);
+	layoutTab->addLayout(labelExtraArgs);
+
+	// Looks like we're done here.
 	this->initOK = TRUE; // Class is good to go!
 }
 

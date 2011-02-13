@@ -19,6 +19,9 @@
 #define ZDLTABMAIN_H
 
 #include "ZDLTab.h"
+#include "QLabelLayout.h"
+#include <QtGui/QVBoxLayout>
+#include <QtGui/QLineEdit>
 
 /**
 * @class ZDLTabMain
@@ -30,6 +33,9 @@ class ZDLTabMain : public ZDLTab {
 		static ZDLTabMain* newInstance( QWidget *parentWidget );
 
 	protected:
+	// Protected Widgets.
+		QLineEdit *editExtraArgs; ///< Extra Arguments box.
+
 	// Protected Functions.
 		ZDLTabMain( QWidget *parentWidget );
 };
