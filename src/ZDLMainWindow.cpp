@@ -53,9 +53,21 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 
 	// Set up the main layout.
 	QVBoxLayout *layoutMain = new QVBoxLayout();
+	layoutMain->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
 	this->setLayout(layoutMain);
 
-	// TODO: Create the interface tabs.
+	// Set-up the tab group.
+	tabsMain = new QTabWidget(this);
+	layoutMain->addWidget(tabsMain);
+
+	// Create the interface tabs.
+	// TODO: The real tabs need to go here when they're done.
+	ZDLTab *tabTemp = ZDLTab::newInstance(this);
+	if( tabTemp == NULL ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	tabsMain->addTab(tabTemp, tabTemp->getTabLabel());
 
 	// Create the buttons down at the bottom.
 	QHBoxLayout *layoutButtons = new QHBoxLayout();

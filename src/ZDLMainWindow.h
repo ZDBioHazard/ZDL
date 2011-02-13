@@ -18,9 +18,11 @@
 #ifndef ZDLMAINWINDOW_H
 #define ZDLMAINWINDOW_H
 
+#include "ZDLTab.h"
 #include <QtGui/QWidget>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
+#include <QtGui/QTabWidget>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
 
@@ -41,6 +43,7 @@ class ZDLMainWindow : public QWidget {
 		bool initOK; ///< Object initialization status.
 
 	// Protected Widgets.
+		QTabWidget  *tabsMain;     ///< Tab group.
 		QPushButton *buttonExit;   ///< Exit button.
 		QPushButton *buttonZDL;    ///< ZDL button.
 		QPushButton *buttonLaunch; ///< Launch button.

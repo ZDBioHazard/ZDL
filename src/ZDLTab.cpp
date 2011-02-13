@@ -48,7 +48,8 @@ bool ZDLTab::getInitOK( ){
 ZDLTab::ZDLTab( QWidget *parentWidget ) : QWidget( parentWidget ){
 	this->initOK = FALSE; // Initialize the object status.
 
-	// Nothing to do here. ...Yet.
+	// Make sure the tab has a label.
+	this->tabLabel = "Base Tab Object";
 
 	this->initOK = TRUE; // Class is good to go!
 }
