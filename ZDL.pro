@@ -3,10 +3,6 @@ CONFIG = qt
     MOC_DIR = ./obj/
 OBJECTS_DIR = ./obj/
 
-DEFINES += ZDL_COMPILEDATE="\"\\\"`date +'%a, %b %d %Y %H:%M:%S %Z'`\\\"\""
-DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo`\\\"\""
-# TODO: Add a define for ZDL_REVISION that gets the Git hash or something.
-
 HEADERS = src/Version.h \
           src/QLabelLayout.h \
           src/ZDLApp.h \
@@ -19,4 +15,12 @@ SOURCES = src/ZDL.cpp \
           src/ZDLMainWindow.cpp \
           src/ZDLTab.cpp \
           src/ZDLTabMain.cpp
+
+unix {
+	DEFINES += ZDL_VERSION="\"\\\"`git describe --always`\\\"\""
+	DEFINES += ZDL_COMPILEDATE="\"\\\"`date +'%a, %b %d %Y %H:%M:%S %Z'`\\\"\""
+	DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo` (Qt $${QT_VERSION})\\\"\""
+} win32 {
+	DEFINES += ZDL_BUILDINFO="\"\\\"Windows (Qt $${QT_VERSION})\\\"\""
+}
 

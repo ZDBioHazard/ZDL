@@ -22,10 +22,6 @@
 	#define ZDL_VERSION "3.8.7"
 #endif // ZDL_VERSION
 
-#ifndef ZDL_REVISION
-	#define ZDL_REVISION "Custom"
-#endif // ZDL_REVISION
-
 #ifndef ZDL_COMPILEDATE
 	#define ZDL_COMPILEDATE "Unknown Compile Date"
 #endif // ZDL_COMPILEDATE
@@ -34,12 +30,8 @@
 	#define ZDL_BUILDINFO "Unknown Build"
 #endif // ZDL_BUILDINFO
 
-#ifndef ZDL_FULLVERSION
-	#define ZDL_FULLVERSION ZDL_VERSION" ("ZDL_REVISION")"
-#endif // ZDL_FULLVERSION
-
 #ifndef ZDL_APPTITLE
-	#define ZDL_APPTITLE "ZDL "ZDL_FULLVERSION
+	#define ZDL_APPTITLE "ZDL "ZDL_VERSION
 #endif // ZDL_APPTITLE
 
 #endif // VERSION_H
