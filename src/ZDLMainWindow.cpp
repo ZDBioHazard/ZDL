@@ -61,13 +61,13 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	layoutMain->addWidget(tabsMain);
 
 	// Create the interface tabs.
-	// TODO: The real tabs need to go here when they're done.
-	ZDLTab *tabTemp = ZDLTab::newInstance(this);
-	if( tabTemp == NULL ){
+	// TODO: Eventually this should be some sort of iterator.
+	this->tabMain = ZDLTabMain::newInstance(this);
+	if( this->tabMain == NULL ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
-	tabsMain->addTab(tabTemp, tabTemp->getTabLabel());
+	tabsMain->addTab(this->tabMain, this->tabMain->getTabLabel());
 
 	// Create the buttons down at the bottom.
 	QHBoxLayout *layoutButtons = new QHBoxLayout();

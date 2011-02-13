@@ -18,7 +18,7 @@
 #ifndef ZDLMAINWINDOW_H
 #define ZDLMAINWINDOW_H
 
-#include "ZDLTab.h"
+#include "ZDLTabMain.h"
 #include <QtGui/QWidget>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
@@ -41,6 +41,9 @@ class ZDLMainWindow : public QWidget {
 	protected:
 	// Protected Variables.
 		bool initOK; ///< Object initialization status.
+
+	// Protected Tab Objects
+		ZDLTab *tabMain; //< General Tab
 
 	// Protected Widgets.
 		QTabWidget  *tabsMain;     ///< Tab group.

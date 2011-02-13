@@ -10,10 +10,12 @@ DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo`\\\"\""
 HEADERS = src/Version.h \
           src/ZDLApp.h \
           src/ZDLMainWindow.h \
-          src/ZDLTab.h
+          src/ZDLTab.h \
+          src/ZDLTabMain.h
 
 SOURCES = src/ZDL.cpp \
           src/ZDLApp.cpp \
           src/ZDLMainWindow.cpp \
-          src/ZDLTab.cpp
+          src/ZDLTab.cpp \
+          src/ZDLTabMain.cpp
 
