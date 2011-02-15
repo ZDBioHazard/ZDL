@@ -8,13 +8,15 @@ HEADERS = src/Version.h \
           src/ZDLApp.h \
           src/ZDLMainWindow.h \
           src/ZDLTab.h \
-          src/ZDLTabMain.h
+          src/ZDLTabMain.h \
+          src/ZDLTabMulti.h
 
 SOURCES = src/ZDL.cpp \
           src/ZDLApp.cpp \
           src/ZDLMainWindow.cpp \
           src/ZDLTab.cpp \
-          src/ZDLTabMain.cpp
+          src/ZDLTabMain.cpp \
+          src/ZDLTabMulti.cpp
 
 unix {
 	DEFINES += ZDL_VERSION="\"\\\"`git describe --always`\\\"\""
