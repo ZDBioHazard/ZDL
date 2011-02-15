@@ -52,14 +52,52 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
 	this->setLayout(layoutTab);
 
-	// TODO: Game Mode
-	// TODO: Players
+	// Game Mode.
+	QLabelLayout *labelGameMode = new QLabelLayout("Game Mode", this);
+			this->comboGameMode = new QComboBox(this);
+	if( !labelGameMode || !this->comboGameMode ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	// TODO: I don't like this list being here for some reason.
+	QStringList strGameModes;
+	strGameModes << "Single-Player"           << "Multiplayer: Join"
+	             << "Multiplayer: Host Co-Op" << "Multiplayer: Host Deathmatch";
+	this->comboGameMode->addItems(strGameModes);
+	labelGameMode->addWidget(this->comboGameMode);
+	layoutTab->addLayout(labelGameMode, 0, 0, 1, 2);
+
+	// Players.
+	QLabelLayout *labelPlayers = new QLabelLayout("Players", this);
+			this->spinPlayers  = new QSpinBox(this);
+	if( !labelPlayers || !this->spinPlayers ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	labelPlayers->addWidget(this->spinPlayers);
+	layoutTab->addLayout(labelPlayers, 0, 2, 1, 1);
+
 	// TODO: Host Name
 	// TODO: Port
 	// TODO: Frag Limit
 	// TODO: Time Limit
 	// TODO: DUP
-	// TODO: Extratic
+
+	// Extratic.
+	this->checkExtratic = new QCheckBox("Extratic", this);
+	if( !checkExtratic ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	layoutTab->addWidget(checkExtratic, 3, 0, 1, 3);
+
+	// Push everything up to the top of the tab.
+	QSpacerItem *spacerMulti = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+	if( !spacerMulti ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	layoutTab->addItem(spacerMulti, 4, 0, 1, 3);
 
 	// Looks like we're done here. ...Finally.
 	this->initOK = TRUE; // Class is good to go!
