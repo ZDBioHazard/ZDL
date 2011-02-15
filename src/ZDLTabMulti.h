@@ -19,7 +19,13 @@
 #define ZDLTABMULTI_H
 
 #include "ZDLTab.h"
-#include <QtGui/QVBoxLayout>
+#include "QLabelLayout.h"
+#include <QtGui/QGridLayout>
+#include <QtGui/QComboBox>
+#include <QtGui/QSpinBox>
+#include <QtGui/QLineEdit>
+#include <QtGui/QCheckBox>
+#include <QtGui/QSpacerItem>
 
 /**
 * @class ZDLTabMulti
@@ -31,6 +37,25 @@ class ZDLTabMulti : public ZDLTab {
 		static ZDLTabMulti* newInstance( QWidget *parentWidget );
 
 	protected:
+	// Protected Enums.
+		/// Game Modes shown in the "Game Mode" combo box.
+		enum GameModes {
+			MODE_SINGLE,
+			MODE_MULTI_JOIN,
+			MODE_MULTI_COOP,
+			MODE_MULTI_DM
+		};
+
+	// Protected Widgets.
+		QComboBox *comboGameMode; ///< Game Mode selector.
+		QSpinBox  *spinPlayers;   ///< Players spinner.
+		QLineEdit *editHost;      ///< Hostname box.
+		QSpinBox  *spinPort;      ///< Port spinner.
+		QSpinBox  *spinFragLimit; ///< Frag Limit spinner.
+		QSpinBox  *spinTimeLimit; ///< Time Limit spinner.
+		QSpinBox  *spinDup;       ///< Duplicate Packets spinner.
+		QCheckBox *checkExtratic; ///< Extratic checkbox.
+
 	// Protected Functions.
 		ZDLTabMulti( QWidget *parentWidget );
 };

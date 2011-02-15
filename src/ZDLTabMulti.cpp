@@ -48,9 +48,18 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	//
 
 	// Set up the main layout.
-	QVBoxLayout *layoutTab = new QVBoxLayout();
+	QGridLayout *layoutTab = new QGridLayout();
 	layoutTab->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
 	this->setLayout(layoutTab);
+
+	// TODO: Game Mode
+	// TODO: Players
+	// TODO: Host Name
+	// TODO: Port
+	// TODO: Frag Limit
+	// TODO: Time Limit
+	// TODO: DUP
+	// TODO: Extratic
 
 	// Looks like we're done here. ...Finally.
 	this->initOK = TRUE; // Class is good to go!
