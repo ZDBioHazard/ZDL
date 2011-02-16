@@ -37,6 +37,9 @@ class ZDLTabMulti : public ZDLTab {
 		static ZDLTabMulti* newInstance( QWidget *parentWidget );
 
 	protected:
+	// Protected Constants.
+		static const int DEFAULT_PORT = 5029;
+
 	// Protected Enums.
 		/// Game Modes shown in the "Game Mode" combo box.
 		enum GameModes {
@@ -55,6 +58,7 @@ class ZDLTabMulti : public ZDLTab {
 		QSpinBox  *spinTimeLimit; ///< Time Limit spinner.
 		QSpinBox  *spinDup;       ///< Duplicate Packets spinner.
 		QCheckBox *checkExtratic; ///< Extratic checkbox.
+		QCheckBox *checkCheats;   ///< Enable Cheats checkbox.
 
 	// Protected Functions.
 		ZDLTabMulti( QWidget *parentWidget );

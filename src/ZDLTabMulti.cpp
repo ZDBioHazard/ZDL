@@ -52,10 +52,13 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
 	this->setLayout(layoutTab);
 
-	// Game Mode.
+	// Game Mode / Players.
 	QLabelLayout *labelGameMode = new QLabelLayout("Game Mode", this);
 			this->comboGameMode = new QComboBox(this);
-	if( !labelGameMode || !this->comboGameMode ){
+	QLabelLayout *labelPlayers  = new QLabelLayout("Players", this);
+			this->spinPlayers   = new QSpinBox(this);
+	if( !labelGameMode || !this->comboGameMode ||
+	    !labelPlayers  || !this->spinPlayers   ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
@@ -64,32 +67,60 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	strGameModes << "Single-Player"           << "Multiplayer: Join"
 	             << "Multiplayer: Host Co-Op" << "Multiplayer: Host Deathmatch";
 	this->comboGameMode->addItems(strGameModes);
+	// TODO: This should be set by the port config eventually.
+	this->spinPlayers->setRange(1, 8);
 	labelGameMode->addWidget(this->comboGameMode);
 	layoutTab->addLayout(labelGameMode, 0, 0, 1, 2);
-
-	// Players.
-	QLabelLayout *labelPlayers = new QLabelLayout("Players", this);
-			this->spinPlayers  = new QSpinBox(this);
-	if( !labelPlayers || !this->spinPlayers ){
-		// TODO: Error report here.
-		return; // Bail out.
-	}
 	labelPlayers->addWidget(this->spinPlayers);
 	layoutTab->addLayout(labelPlayers, 0, 2, 1, 1);
 
-	// TODO: Host Name
-	// TODO: Port
-	// TODO: Frag Limit
-	// TODO: Time Limit
-	// TODO: DUP
-
-	// Extratic.
-	this->checkExtratic = new QCheckBox("Extratic", this);
-	if( !checkExtratic ){
+	// Server Hostname/IP / Server Port.
+	QLabelLayout *labelHost = new QLabelLayout("Server Hostname/IP", this);
+	        this->editHost  = new QLineEdit(this);
+	QLabelLayout *labelPort = new QLabelLayout("Port", this);
+			this->spinPort  = new QSpinBox(this);
+	if( !labelHost || !this->editHost ||
+	    !labelPort || !this->spinPort ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
-	layoutTab->addWidget(checkExtratic, 3, 0, 1, 3);
+	this->spinPort->setRange(0x01, 0xFFFF); // TODO: Set this automatically?
+	this->spinPort->setValue(DEFAULT_PORT);
+	labelHost->addWidget(this->editHost);
+	layoutTab->addLayout(labelHost, 1, 0, 1, 2);
+	labelPort->addWidget(this->spinPort);
+	layoutTab->addLayout(labelPort, 1, 2, 1, 1);
+
+	// Frag Limit / Time Limit / DUP.
+	QLabelLayout *labelFragLimit = new QLabelLayout("Frag Limit", this);
+	        this->spinFragLimit  = new QSpinBox(this);
+	QLabelLayout *labelTimeLimit = new QLabelLayout("Time Limit (m)", this);
+			this->spinTimeLimit  = new QSpinBox(this);
+	QLabelLayout *labelDup       = new QLabelLayout("Dup Packets", this);
+			this->spinDup        = new QSpinBox(this);
+	if( !labelFragLimit || !this->spinFragLimit ||
+	    !labelTimeLimit || !this->spinTimeLimit ||
+	    !labelDup       || !this->spinDup       ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	labelFragLimit->addWidget(this->spinFragLimit);
+	layoutTab->addLayout(labelFragLimit, 2, 0, 1, 1);
+	labelTimeLimit->addWidget(this->spinTimeLimit);
+	layoutTab->addLayout(labelTimeLimit, 2, 1, 1, 1);
+	this->spinDup->setRange(1, 9);
+	labelDup->addWidget(this->spinDup);
+	layoutTab->addLayout(labelDup, 2, 2, 1, 1);
+
+	// Extratic.
+	this->checkExtratic = new QCheckBox("Extratic", this);
+	this->checkCheats   = new QCheckBox("Enable Cheats", this);
+	if( !this->checkExtratic || !this->checkCheats ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	layoutTab->addWidget(checkExtratic, 3, 0, 1, 1);
+	layoutTab->addWidget(checkCheats, 3, 1, 1, 2);
 
 	// Push everything up to the top of the tab.
 	QSpacerItem *spacerMulti = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
