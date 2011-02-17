@@ -29,6 +29,10 @@
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
 
+// Needed for Centering (Boooo!)
+#include <QtGui/QApplication>
+#include <QtGui/QDesktopWidget>
+
 /**
 * @class ZDLMainWindow
 * Main user interface class.
