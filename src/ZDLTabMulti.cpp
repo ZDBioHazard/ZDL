@@ -75,7 +75,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->addLayout(labelPlayers, 0, 2, 1, 1);
 
 	// Server Hostname/IP / Server Port.
-	QLabelLayout *labelHost = new QLabelLayout("Server Hostname/IP", this);
+	QLabelLayout *labelHost = new QLabelLayout("Server Hostname / IP", this);
 	        this->editHost  = new QLineEdit(this);
 	QLabelLayout *labelPort = new QLabelLayout("Port", this);
 			this->spinPort  = new QSpinBox(this);
@@ -84,43 +84,39 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
-	this->spinPort->setRange(0x01, 0xFFFF); // TODO: Set this automatically?
+	this->spinPort->setRange(MIN_PORT, MAX_PORT);
 	this->spinPort->setValue(DEFAULT_PORT);
 	labelHost->addWidget(this->editHost);
 	layoutTab->addLayout(labelHost, 1, 0, 1, 2);
 	labelPort->addWidget(this->spinPort);
 	layoutTab->addLayout(labelPort, 1, 2, 1, 1);
 
-	// Frag Limit / Time Limit / DUP.
+	// Frag Limit / Time Limit.
 	QLabelLayout *labelFragLimit = new QLabelLayout("Frag Limit", this);
 	        this->spinFragLimit  = new QSpinBox(this);
-	QLabelLayout *labelTimeLimit = new QLabelLayout("Time Limit (m)", this);
-			this->spinTimeLimit  = new QSpinBox(this);
-	QLabelLayout *labelDup       = new QLabelLayout("Dup Packets", this);
-			this->spinDup        = new QSpinBox(this);
+	QLabelLayout *labelTimeLimit = new QLabelLayout("Time Limit", this);
+	        this->spinTimeLimit  = new QSpinBox(this);
 	if( !labelFragLimit || !this->spinFragLimit ||
-	    !labelTimeLimit || !this->spinTimeLimit ||
-	    !labelDup       || !this->spinDup       ){
+	    !labelTimeLimit || !this->spinTimeLimit ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
+	spinFragLimit->setRange(0, MAX_FRAGS);
 	labelFragLimit->addWidget(this->spinFragLimit);
-	layoutTab->addLayout(labelFragLimit, 2, 0, 1, 1);
+	layoutTab->addLayout(labelFragLimit, 0, 3, 1, 1);
+	spinFragLimit->setRange(0, MAX_TIME);
 	labelTimeLimit->addWidget(this->spinTimeLimit);
-	layoutTab->addLayout(labelTimeLimit, 2, 1, 1, 1);
-	this->spinDup->setRange(1, 9);
-	labelDup->addWidget(this->spinDup);
-	layoutTab->addLayout(labelDup, 2, 2, 1, 1);
+	layoutTab->addLayout(labelTimeLimit, 1, 3, 1, 1);
 
-	// Extratic.
-	this->checkExtratic = new QCheckBox("Extratic", this);
-	this->checkCheats   = new QCheckBox("Enable Cheats", this);
-	if( !this->checkExtratic || !this->checkCheats ){
+	// Magic / Enable Cheats.
+	this->checkMagic  = new QCheckBox("Magically Fix Everything", this);
+	this->checkCheats = new QCheckBox("Enable Cheats", this);
+	if( !this->checkMagic || !this->checkCheats ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
-	layoutTab->addWidget(checkExtratic, 3, 0, 1, 1);
-	layoutTab->addWidget(checkCheats, 3, 1, 1, 2);
+	layoutTab->addWidget(this->checkMagic, 2, 0, 1, 2);
+	layoutTab->addWidget(this->checkCheats,  2, 2, 1, 2);
 
 	// Push everything up to the top of the tab.
 	QSpacerItem *spacerMulti = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);

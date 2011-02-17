@@ -38,15 +38,20 @@ class ZDLTabMulti : public ZDLTab {
 
 	protected:
 	// Protected Constants.
-		static const int DEFAULT_PORT = 5029;
+		static const int DEFAULT_PORT = 5029;   ///< Default Port to connect to.
+		// TODO: Get these values checked out for validity.
+		static const int MIN_PORT     = 0x0001; ///< Minimum Port number.
+		static const int MAX_PORT     = 0xFFFF; ///< Maximum Port number.
+		static const int MAX_FRAGS    = 0xFFFF; ///< Maximum FragLimit.
+		static const int MAX_TIME     = 0xFFFF; ///< Maximum TimeLimit.
 
 	// Protected Enums.
 		/// Game Modes shown in the "Game Mode" combo box.
 		enum GameModes {
 			MODE_SINGLE,
 			MODE_MULTI_JOIN,
-			MODE_MULTI_COOP,
-			MODE_MULTI_DM
+			MODE_MULTI_HOST_COOP,
+			MODE_MULTI_HOST_DM
 		};
 
 	// Protected Widgets.
@@ -56,8 +61,7 @@ class ZDLTabMulti : public ZDLTab {
 		QSpinBox  *spinPort;      ///< Port spinner.
 		QSpinBox  *spinFragLimit; ///< Frag Limit spinner.
 		QSpinBox  *spinTimeLimit; ///< Time Limit spinner.
-		QSpinBox  *spinDup;       ///< Duplicate Packets spinner.
-		QCheckBox *checkExtratic; ///< Extratic checkbox.
+		QCheckBox *checkMagic;    ///< Magically Fix Everything checkbox.
 		QCheckBox *checkCheats;   ///< Enable Cheats checkbox.
 
 	// Protected Functions.
