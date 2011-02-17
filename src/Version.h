@@ -19,18 +19,26 @@
 #define VERSION_H
 
 #ifndef ZDL_VERSION
+	/// Simple version number.
+	/// The full value is set by defines in ZDL.pro when possible.
 	#define ZDL_VERSION "3.8.7"
 #endif // ZDL_VERSION
 
 #ifndef ZDL_COMPILEDATE
+	/// Compile date. Should be readable by people.
+	/// The full value is set by defines in ZDL.pro when possible.
 	#define ZDL_COMPILEDATE "Unknown Compile Date"
 #endif // ZDL_COMPILEDATE
 
 #ifndef ZDL_BUILDINFO
+	/// Build information. Should include OS and Architecture.
+	/// The full value is set by defines in ZDL.pro when possible.
 	#define ZDL_BUILDINFO "Unknown Build"
 #endif // ZDL_BUILDINFO
 
 #ifndef ZDL_APPTITLE
+	/// Application Title, including version number.
+	// TODO: Should support i18n.
 	#define ZDL_APPTITLE "ZDL "ZDL_VERSION
 #endif // ZDL_APPTITLE
 

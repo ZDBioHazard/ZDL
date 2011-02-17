@@ -44,8 +44,8 @@ class ZDLMainWindow : public QWidget {
 		bool initOK; ///< Object initialization status.
 
 	// Protected Tab Objects
-		ZDLTab *tabMain;  //< General Tab
-		ZDLTab *tabMulti; //< Multiplayer Tab
+		ZDLTab *tabMain;  ///< General Tab
+		ZDLTab *tabMulti; ///< Multiplayer Tab
 
 	// Protected Widgets.
 		QTabWidget  *tabsMain;     ///< Tab group.
