@@ -18,6 +18,7 @@
 #ifndef QLABELLAYOUT_H
 #define QLABELLAYOUT_H
 
+// Qt Stuff.
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QLabel>
 

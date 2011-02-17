@@ -20,6 +20,8 @@
 
 #include "Version.h"
 #include "ZDLMainWindow.h"
+
+// Qt Stuff.
 #include <QtGui/QApplication>
 
 /**

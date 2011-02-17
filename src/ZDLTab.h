@@ -18,7 +18,7 @@
 #ifndef ZDLTAB_H
 #define ZDLTAB_H
 
-#include <QString>
+// Qt Stuff.
 #include <QtGui/QWidget>
 
 /**
