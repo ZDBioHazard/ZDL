@@ -94,15 +94,9 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	// TODO: The window position and size should be pulled from the config.
 	this->resize(1, 1); // As small as possible.
 	this->show(); // Show before moving to update the internal window size.
-	// Center the window on the screen, this is stupidly difficult. o.O
-	QDesktopWidget *desktop = QApplication::desktop();
-	if( !desktop ){
-		// TODO: Error report here.
-		return; // Bail out.
-	}
-	QRect rectDesktop = desktop->availableGeometry(this);
-	QRect rectWindow  = this->rect();
-	this->move(rectDesktop.center()-rectWindow.center());
+	// Center the window on the screen.
+	QRect rectDesktop = QApplication::desktop()->screenGeometry(this);
+	this->move(rectDesktop.center()-this->rect().center());
 
 	// Get outta' here!
 	this->initOK = TRUE; // Class is good to go!

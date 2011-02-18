@@ -20,11 +20,13 @@
 /**
 * Instance generator for ZDLTabMulti.
 *
+* @param  parentWidget  Parent widget to assign this widget to.
+*
 * @return New ZDLTabMulti object on success, NULL on failure.
 */
 ZDLTabMulti* ZDLTabMulti::newInstance( QWidget *parentWidget ){
 	ZDLTabMulti *newTab = new ZDLTabMulti(parentWidget);
-	if( newTab->getInitOK() != TRUE ){
+	if( newTab->getInitOK() == FALSE ){
 		// TODO: Error report here.
 		return NULL;
 	}

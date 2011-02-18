@@ -20,6 +20,8 @@
 /**
 * Instance generator for ZDLTab.
 *
+* @param  parentWidget  Parent widget to assign this widget to.
+*
 * @return New ZDLTab object on success, NULL on failure.
 */
 ZDLTab* ZDLTab::newInstance( QWidget *parentWidget ){
