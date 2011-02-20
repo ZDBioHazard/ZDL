@@ -28,6 +28,7 @@
 #include <QtGui/QTabWidget>
 #include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
+#include <QtGui/QMenu>
 
 // Needed for Centering (Boooo!)
 #include <QtGui/QApplication>
@@ -58,6 +59,7 @@ class ZDLMainWindow : public QWidget {
 		QPushButton *buttonExit;   ///< Exit button.
 		QPushButton *buttonZDL;    ///< ZDL button.
 		QPushButton *buttonLaunch; ///< Launch button.
+		QMenu       *menuZDL;      ///< ZDL button menu.
 
 	// Protected Functions.
 		bool     getInitOK( );

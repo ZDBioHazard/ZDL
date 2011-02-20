@@ -90,6 +90,28 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	layoutButtons->addWidget(buttonLaunch);
 	layoutMain->addLayout(layoutButtons);
 
+	// Create the menu attached to the ZDL button.
+	 this->menuZDL   = new QMenu("ZDL", this->buttonZDL);
+	QMenu *menuReset = new QMenu("Reset Tab", this->buttonZDL);
+	if( !this->menuZDL || !menuReset ){
+		// TODO: Error report here.
+		return; // Bail out.
+	}
+	this->menuZDL->addAction("Show &Command Line");
+		// TODO: This should iterate through all the tabs.
+		menuReset->addAction("&Reset All Tabs");
+		menuReset->addSeparator();
+		menuReset->addAction("Reset "+tabMain->getTabLabel()+" Tab");
+		menuReset->addAction("Reset "+tabMulti->getTabLabel()+" Tab");
+		this->menuZDL->addMenu(menuReset);
+	this->menuZDL->addSeparator();
+	this->menuZDL->addAction("&Load Preset");
+	this->menuZDL->addAction("&Save Preset");
+	this->menuZDL->addSeparator();
+	this->menuZDL->addAction("&Preferences");
+	this->menuZDL->addAction("&About ZDL");
+	this->buttonZDL->setMenu(menuZDL);
+
 	// Well now, wasn't that fun? Time to prep the window and show it.
 	// TODO: The window position and size should be pulled from the config.
 	this->resize(1, 1); // As small as possible.
