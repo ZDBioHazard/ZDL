@@ -18,7 +18,6 @@
 #ifndef ZDLAPP_H
 #define ZDLAPP_H
 
-#include "Version.h"
 #include "ZDLMainWindow.h"
 
 // Qt Stuff.
