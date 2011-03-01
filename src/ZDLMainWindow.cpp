@@ -71,18 +71,17 @@ ZDLMainWindow::ZDLMainWindow( ) : QWidget( ){
 	QHBoxLayout *layoutButtons = new QHBoxLayout();
 	       this->buttonExit    = new QPushButton("Exit", this);
 	       this->buttonZDL     = new QPushButton("ZDL", this);
-	QSpacerItem *spacerButtons = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 	       this->buttonLaunch  = new QPushButton("Launch", this);
 	// Make sure all the widgets got created properly.
-	if( !layoutButtons    || !spacerButtons   ||
-	    !this->buttonExit || !this->buttonZDL || !this->buttonLaunch ){
+	if( !layoutButtons   || !this->buttonExit   ||
+	    !this->buttonZDL || !this->buttonLaunch ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
 	// Aaand add them to the layout.
 	layoutButtons->addWidget(buttonExit);
 	layoutButtons->addWidget(buttonZDL);
-	layoutButtons->addItem(spacerButtons);
+	layoutButtons->addStretch();
 	layoutButtons->addWidget(buttonLaunch);
 	layoutMain->addLayout(layoutButtons);
 

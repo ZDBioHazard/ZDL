@@ -121,6 +121,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->addWidget(this->checkCheats,  2, 2, 1, 2);
 
 	// Push everything up to the top of the tab.
+	// Unfortunately a full-blown QSpacerItem has to be used in QGridLayouts
+	// instead of just addStretch(). :(
 	QSpacerItem *spacerMulti = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
 	if( !spacerMulti ){
 		// TODO: Error report here.

@@ -28,7 +28,6 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QTabWidget>
 #include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
 #include <QtGui/QMenu>
 
 // Needed for Centering (Boooo!)

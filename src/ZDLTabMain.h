@@ -26,7 +26,6 @@
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QListWidget>
 #include <QtGui/QPushButton>
-#include <QtGui/QSpacerItem>
 #include <QtGui/QComboBox>
 #include <QtGui/QLineEdit>
 

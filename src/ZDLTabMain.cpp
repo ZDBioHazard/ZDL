@@ -67,12 +67,10 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	        this->listFiles          = new QListWidget(this);
 	QHBoxLayout  *layoutFilesButtons = new QHBoxLayout();
 	        this->buttonFilesAdd     = new QPushButton("Add", this);
-	QSpacerItem  *spacerFilesButtons = new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Minimum);
 	        this->buttonFilesRemove  = new QPushButton("Remove", this);
-	if( !layoutFiles             || !labelFiles           ||
-	    !layoutFilesButtons      || !spacerFilesButtons   ||
-	    !this->listFiles         || !this->buttonFilesAdd ||
-	    !this->buttonFilesRemove ){
+	if( !layoutFiles          || !labelFiles              ||
+	    !layoutFilesButtons   || !this->listFiles         ||
+	    !this->buttonFilesAdd || !this->buttonFilesRemove ){
 		// TODO: Error report here.
 		return; // Bail out.
 	}
@@ -80,7 +78,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	labelFiles->addWidget(this->listFiles);
 	layoutFiles->addLayout(layoutFilesButtons);
 	layoutFilesButtons->addWidget(this->buttonFilesAdd);
-	layoutFilesButtons->addItem(spacerFilesButtons);
+	layoutFilesButtons->addStretch();
 	layoutFilesButtons->addWidget(this->buttonFilesRemove);
 	layoutColumns->addLayout(layoutFiles);
 
