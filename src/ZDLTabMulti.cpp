@@ -57,9 +57,9 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 
 	// Game Mode / Players.
 	QLabelLayout *labelGameMode = new QLabelLayout("Game Mode", this);
-			this->comboGameMode = new QComboBox(this);
+	        this->comboGameMode = new QComboBox(this);
 	QLabelLayout *labelPlayers  = new QLabelLayout("Players", this);
-			this->spinPlayers   = new QSpinBox(this);
+	        this->spinPlayers   = new QSpinBox(this);
 	if( !labelGameMode || !this->comboGameMode ||
 	    !labelPlayers  || !this->spinPlayers   ){
 		qCritical() << "ZDLTabMulti: Couldn't create the Mode/Players widgets!";
@@ -81,7 +81,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	QLabelLayout *labelHost = new QLabelLayout("Server Hostname / IP", this);
 	        this->editHost  = new QLineEdit(this);
 	QLabelLayout *labelPort = new QLabelLayout("Port", this);
-			this->spinPort  = new QSpinBox(this);
+	        this->spinPort  = new QSpinBox(this);
 	if( !labelHost || !this->editHost ||
 	    !labelPort || !this->spinPort ){
 		qCritical() << "ZDLTabMulti: Couldn't create the Host/Port widgets!";

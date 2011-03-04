@@ -72,7 +72,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	if( !layoutFiles          || !labelFiles              ||
 	    !layoutFilesButtons   || !this->listFiles         ||
 	    !this->buttonFilesAdd || !this->buttonFilesRemove ){
-			qCritical() << "ZDLTabMain: Couldn't create the External Files list!";
+		qCritical() << "ZDLTabMain: Couldn't create the External Files list!";
 		return; // Bail out.
 	}
 	layoutFiles->addLayout(labelFiles);
@@ -89,7 +89,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 
 		// Engine list.
 		QLabelLayout *labelEngines = new QLabelLayout("Game Engine", this);
-			    this->comboEngines = new QComboBox(this);
+		        this->comboEngines = new QComboBox(this);
 		if( !labelEngines || !this->comboEngines ){
 			qCritical() << "ZDLTabMain: Couldn't create the Engines list!";
 			return; // Bail out.
@@ -99,7 +99,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 
 		// IWAD list.
 		QLabelLayout *labelIWADs = new QLabelLayout("Game IWAD", this);
-			    this->listIWADs  = new QListWidget(this);
+		        this->listIWADs  = new QListWidget(this);
 		if( !labelIWADs || !this->listIWADs ){
 			qCritical() << "ZDLTabMain: Couldn't create the IWAD list!";
 			return; // Bail out.
@@ -113,7 +113,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 
 			// Warp box.
 			QLabelLayout *labelWarp = new QLabelLayout("Warp to Map", this);
-					this->editWarp  = new QLineEdit(this);
+			        this->editWarp  = new QLineEdit(this);
 			if( !labelWarp || !this->editWarp ){
 				qCritical() << "ZDLTabMain: Couldn't create the Warp box!";
 				return; // Bail out.
@@ -124,7 +124,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 
 			// Skill box.
 			QLabelLayout *labelSkill = new QLabelLayout("Skill Level", this);
-					this->comboSkill = new QComboBox(this);
+			        this->comboSkill = new QComboBox(this);
 			if( !labelSkill || !this->comboSkill ){
 				qCritical() << "ZDLTabMain: Couldn't create the Skill box!";
 				return; // Bail out.
