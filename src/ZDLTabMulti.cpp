@@ -25,9 +25,10 @@
 * @return New ZDLTabMulti object on success, NULL on failure.
 */
 ZDLTabMulti* ZDLTabMulti::newInstance( QWidget *parentWidget ){
+	qDebug() << "ZDLTabMulti: Creating a new instance.";
 	ZDLTabMulti *newTab = new ZDLTabMulti(parentWidget);
 	if( newTab->getInitOK() == FALSE ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMulti: Couldn't create a new instance!";
 		return NULL;
 	}
 	return newTab;
@@ -61,7 +62,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			this->spinPlayers   = new QSpinBox(this);
 	if( !labelGameMode || !this->comboGameMode ||
 	    !labelPlayers  || !this->spinPlayers   ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMulti: Couldn't create the Mode/Players widgets!";
 		return; // Bail out.
 	}
 	// TODO: I don't like this list being here for some reason.
@@ -83,7 +84,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			this->spinPort  = new QSpinBox(this);
 	if( !labelHost || !this->editHost ||
 	    !labelPort || !this->spinPort ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMulti: Couldn't create the Host/Port widgets!";
 		return; // Bail out.
 	}
 	this->spinPort->setRange(MIN_PORT, MAX_PORT);
@@ -100,7 +101,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	        this->spinTimeLimit  = new QSpinBox(this);
 	if( !labelFragLimit || !this->spinFragLimit ||
 	    !labelTimeLimit || !this->spinTimeLimit ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMulti: Couldn't create the Frag/Time limit widgets!";
 		return; // Bail out.
 	}
 	spinFragLimit->setRange(0, MAX_FRAGS);
@@ -114,7 +115,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	this->checkMagic  = new QCheckBox("Magically Fix Everything", this);
 	this->checkCheats = new QCheckBox("Enable Cheats", this);
 	if( !this->checkMagic || !this->checkCheats ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMulti: Couldn't create the Checkboxes!";
 		return; // Bail out.
 	}
 	layoutTab->addWidget(this->checkMagic, 2, 0, 1, 2);
@@ -125,7 +126,7 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// instead of just addStretch(). :(
 	QSpacerItem *spacerMulti = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
 	if( !spacerMulti ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMulti: Couldn't create the Spacer!";
 		return; // Bail out.
 	}
 	layoutTab->addItem(spacerMulti, 4, 0, 1, 3);

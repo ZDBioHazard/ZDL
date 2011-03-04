@@ -19,6 +19,7 @@
 #define ZDLTAB_H
 
 // Qt Stuff.
+#include <QDebug>
 #include <QtGui/QWidget>
 
 /**

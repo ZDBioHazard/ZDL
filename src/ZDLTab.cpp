@@ -25,9 +25,10 @@
 * @return New ZDLTab object on success, NULL on failure.
 */
 ZDLTab* ZDLTab::newInstance( QWidget *parentWidget ){
+	qDebug() << "ZDLTab: Creating a new instance.";
 	ZDLTab *newTab = new ZDLTab(parentWidget);
 	if( newTab->getInitOK() == FALSE ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTab: Couldn't create a new instance!";
 		return NULL;
 	}
 	return newTab;

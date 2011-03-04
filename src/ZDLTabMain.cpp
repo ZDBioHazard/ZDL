@@ -25,9 +25,10 @@
 * @return New ZDLTabMain object on success, NULL on failure.
 */
 ZDLTabMain* ZDLTabMain::newInstance( QWidget *parentWidget ){
+	qDebug() << "ZDLTabMain: Creating a new instance.";
 	ZDLTabMain *newTab = new ZDLTabMain(parentWidget);
 	if( newTab->getInitOK() == FALSE ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMain: Couldn't create a new instance!";
 		return NULL;
 	}
 	return newTab;
@@ -71,7 +72,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	if( !layoutFiles          || !labelFiles              ||
 	    !layoutFilesButtons   || !this->listFiles         ||
 	    !this->buttonFilesAdd || !this->buttonFilesRemove ){
-		// TODO: Error report here.
+			qCritical() << "ZDLTabMain: Couldn't create the External Files list!";
 		return; // Bail out.
 	}
 	layoutFiles->addLayout(labelFiles);
@@ -90,7 +91,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		QLabelLayout *labelEngines = new QLabelLayout("Game Engine", this);
 			    this->comboEngines = new QComboBox(this);
 		if( !labelEngines || !this->comboEngines ){
-		// TODO: Error report here.
+			qCritical() << "ZDLTabMain: Couldn't create the Engines list!";
 			return; // Bail out.
 		}
 		labelEngines->addWidget(this->comboEngines);
@@ -100,7 +101,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		QLabelLayout *labelIWADs = new QLabelLayout("Game IWAD", this);
 			    this->listIWADs  = new QListWidget(this);
 		if( !labelIWADs || !this->listIWADs ){
-			// TODO: Error report here.
+			qCritical() << "ZDLTabMain: Couldn't create the IWAD list!";
 			return; // Bail out.
 		}
 		labelIWADs->addWidget(this->listIWADs);
@@ -114,7 +115,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			QLabelLayout *labelWarp = new QLabelLayout("Warp to Map", this);
 					this->editWarp  = new QLineEdit(this);
 			if( !labelWarp || !this->editWarp ){
-				// TODO: Error report here.
+				qCritical() << "ZDLTabMain: Couldn't create the Warp box!";
 				return; // Bail out.
 			}
 			editWarp->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
@@ -125,7 +126,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			QLabelLayout *labelSkill = new QLabelLayout("Skill Level", this);
 					this->comboSkill = new QComboBox(this);
 			if( !labelSkill || !this->comboSkill ){
-				// TODO: Error report here.
+				qCritical() << "ZDLTabMain: Couldn't create the Skill box!";
 				return; // Bail out.
 			}
 			// TODO: I don't like this list being here for some reason.
@@ -140,7 +141,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	QLabelLayout *labelExtraArgs = new QLabelLayout("Extra Command-Line Arguments", this);
 	        this->editExtraArgs  = new QLineEdit(this);
 	if( !labelExtraArgs || !this->editExtraArgs ){
-		// TODO: Error report here.
+		qCritical() << "ZDLTabMain: Couldn't create the Extra Args box!";
 		return; // Bail out.
 	}
 	labelExtraArgs->addWidget(this->editExtraArgs);
