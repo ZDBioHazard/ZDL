@@ -49,3 +49,8 @@ unix {
 # Use faster strings.
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
+# Disable debug messages in release mode.
+release {
+	DEFINES += QT_NO_DEBUG_STREAM
+}
+

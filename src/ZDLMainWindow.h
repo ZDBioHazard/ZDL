@@ -23,6 +23,7 @@
 #include "ZDLTabMulti.h"
 
 // Qt Stuff.
+#include <QDebug>
 #include <QtGui/QWidget>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>

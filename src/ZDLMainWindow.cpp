@@ -23,9 +23,10 @@
 * @return New ZDLMainWindow object on success, NULL on failure.
 */
 ZDLMainWindow* ZDLMainWindow::newInstance( ){
+	qDebug() << "ZDLMainWindow: Creating a new instance.";
 	ZDLMainWindow *newMainWindow = new ZDLMainWindow();
 	if( newMainWindow->getInitOK() == FALSE ){
-		// TODO: Error report here.
+		qCritical() << "ZDLMainWindow: Couldn't create a new instance!";
 		return NULL;
 	}
 	return newMainWindow;
@@ -61,7 +62,7 @@ ZDLMainWindow::ZDLMainWindow( ) : QWidget( ){
 	this->tabMain  = ZDLTabMain::newInstance(this);
 	this->tabMulti = ZDLTabMulti::newInstance(this);
 	if( !this->tabMain || !this->tabMulti ){
-		// TODO: Error report here.
+		qCritical() << "ZDLMainWindow: Couldn't create the interface tabs!";
 		return; // Bail out.
 	}
 	tabsMain->addTab(this->tabMain, this->tabMain->getTabLabel());
@@ -75,7 +76,7 @@ ZDLMainWindow::ZDLMainWindow( ) : QWidget( ){
 	// Make sure all the widgets got created properly.
 	if( !layoutButtons   || !this->buttonExit   ||
 	    !this->buttonZDL || !this->buttonLaunch ){
-		// TODO: Error report here.
+		qCritical() << "ZDLMainWindow: Couldn't create the buttons!";
 		return; // Bail out.
 	}
 	// Aaand add them to the layout.
@@ -89,7 +90,7 @@ ZDLMainWindow::ZDLMainWindow( ) : QWidget( ){
 	 this->menuZDL   = new QMenu("ZDL", this->buttonZDL);
 	QMenu *menuReset = new QMenu("Reset Tab", this->buttonZDL);
 	if( !this->menuZDL || !menuReset ){
-		// TODO: Error report here.
+		qCritical() << "ZDLMainWindow: Couldn't create the ZDL button menus!";
 		return; // Bail out.
 	}
 	this->menuZDL->addAction("Show &Command Line");

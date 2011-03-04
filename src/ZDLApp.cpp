@@ -26,9 +26,10 @@
 * @return New ZDLApp object on success, NULL on failure.
 */
 ZDLApp* ZDLApp::newInstance( int argc, char **argv ){
+	qDebug() << "ZDLApp: Creating a new instance.";
 	ZDLApp *newApp = new ZDLApp(argc, argv);
 	if( newApp->getInitOK() == FALSE ){
-		// TODO: Error report here.
+		qCritical() << "ZDLApp: Couldn't create a new instance!";
 		return NULL;
 	}
 	return newApp;
@@ -55,7 +56,7 @@ ZDLApp::ZDLApp( int argc, char **argv ) : QApplication( argc, argv ){
 	// Set-up the main window.
 	this->mainWindow = ZDLMainWindow::newInstance();
 	if( this->mainWindow == NULL ){ // Check if the object is okay.
-		// TODO: Error report here.
+		qCritical() << "ZDLApp: Couldn't create the mainWindow!";
 		return;
 	}
 

@@ -21,6 +21,7 @@
 #include "ZDLMainWindow.h"
 
 // Qt Stuff.
+#include <QDebug>
 #include <QtGui/QApplication>
 
 /**
