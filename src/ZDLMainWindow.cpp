@@ -20,11 +20,13 @@
 /**
 * Instance generator for ZDLMainWindow.
 *
+* @param  windowTitle  The new window's title.
+*
 * @return New ZDLMainWindow object on success, NULL on failure.
 */
-ZDLMainWindow* ZDLMainWindow::newInstance( ){
+ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
 	qDebug() << "ZDLMainWindow: Creating a new instance.";
-	ZDLMainWindow *newMainWindow = new ZDLMainWindow();
+	ZDLMainWindow *newMainWindow = new ZDLMainWindow(windowTitle);
 	if( newMainWindow->getInitOK() == FALSE ){
 		qCritical() << "ZDLMainWindow: Couldn't create a new instance!";
 		return NULL;
@@ -43,10 +45,12 @@ bool ZDLMainWindow::getInitOK( ){
 
 /**
 * Constructor for ZDLMainWindow.
+*
+* @param  windowTitle  The new window's title.
 */
-ZDLMainWindow::ZDLMainWindow( ) : QWidget( ){
+ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	this->initOK = FALSE; // Initialize the object status.
-	this->setWindowTitle(ZDL_APPTITLE);
+	this->setWindowTitle(windowTitle);
 
 	// Set up the main layout.
 	QVBoxLayout *layoutMain = new QVBoxLayout();

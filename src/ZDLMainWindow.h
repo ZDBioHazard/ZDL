@@ -18,7 +18,6 @@
 #ifndef ZDLMAINWINDOW_H
 #define ZDLMAINWINDOW_H
 
-#include "Version.h"
 #include "ZDLTabMain.h"
 #include "ZDLTabMulti.h"
 
@@ -45,7 +44,7 @@
 class ZDLMainWindow : public QWidget {
 	public:
 	// Public Functions.
-		static ZDLMainWindow* newInstance( );
+		static ZDLMainWindow* newInstance( QString windowTitle );
 
 	protected:
 	// Protected Variables.
@@ -64,7 +63,7 @@ class ZDLMainWindow : public QWidget {
 
 	// Protected Functions.
 		bool     getInitOK( );
-		     ZDLMainWindow( );
+		     ZDLMainWindow( QString windowTitle );
 };
 
 #endif // ZDLMAINWINDOW_H
