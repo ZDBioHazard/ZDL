@@ -25,7 +25,7 @@
 *
 * @return New ZDLApp object on success, NULL on failure.
 */
-ZDLApp* ZDLApp::newInstance( int argc, char **argv ){
+ZDLApp* ZDLApp::newInstance( int &argc, char **argv ){
 	qDebug() << "ZDLApp: Creating a new instance.";
 	ZDLApp *newApp = new ZDLApp(argc, argv);
 	if( newApp->getInitOK() == FALSE ){
@@ -50,7 +50,7 @@ bool ZDLApp::getInitOK( ){
 * @param  argc  Number of command line paramaters.
 * @param  argv  List of command line paramaters.
 */
-ZDLApp::ZDLApp( int argc, char **argv ) : QApplication( argc, argv ){
+ZDLApp::ZDLApp( int &argc, char **argv ) : QApplication( argc, argv ){
 	this->initOK = FALSE; // Initialize the object status.
 
 	// Set-up the main window.

@@ -31,7 +31,7 @@
 class ZDLApp : public QApplication {
 	public:
 	// Public Functions.
-		static ZDLApp* newInstance( int argc, char **argv );
+		static ZDLApp* newInstance( int &argc, char **argv );
 
 	protected:
 	// Protected Variables.
@@ -40,7 +40,7 @@ class ZDLApp : public QApplication {
 
 	// Protected Functions.
 		bool getInitOK( );
-		        ZDLApp( int argc, char **argv );
+		        ZDLApp( int &argc, char **argv );
 };
 
 #endif // ZDLAPP_H
