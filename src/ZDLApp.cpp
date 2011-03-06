@@ -26,22 +26,16 @@
 * @return New ZDLApp object on success, NULL on failure.
 */
 ZDLApp* ZDLApp::newInstance( int &argc, char **argv ){
-	qDebug() << "ZDLApp: Creating a new instance.";
-	ZDLApp *newApp = new ZDLApp(argc, argv);
-	if( newApp->getInitOK() == FALSE ){
-		qCritical() << "ZDLApp: Couldn't create a new instance!";
+	qDebug() << "ZDLApp::newInstance: Creating a new ZDLApp instance.";
+	try {
+		ZDLApp *newApp = new ZDLApp(argc, argv);
+		return newApp;
+	} catch ( char const *except ){
+		qCritical() << "ZDLApp::newInstance: Caught exception:" << except;
 		return NULL;
 	}
-	return newApp;
-}
-
-/**
-* Get the object's initialization status.
-*
-* @return the object's initStatus.
-*/
-bool ZDLApp::getInitOK( ){
-	return this->initOK;
+	qCritical() << "ZDLApp::newInstance: Something weird hapened!";
+	return NULL; // Should never get here.
 }
 
 /**
@@ -51,15 +45,9 @@ bool ZDLApp::getInitOK( ){
 * @param  argv  List of command line paramaters.
 */
 ZDLApp::ZDLApp( int &argc, char **argv ) : QApplication( argc, argv ){
-	this->initOK = FALSE; // Initialize the object status.
-
 	// Set-up the main window.
 	this->mainWindow = ZDLMainWindow::newInstance(ZDL_APPTITLE);
-	if( this->mainWindow == NULL ){ // Check if the object is okay.
-		qCritical() << "ZDLApp: Couldn't create the mainWindow!";
-		return;
-	}
-
-	this->initOK = TRUE; // Class is good to go!
+	if( !this->mainWindow ) // Check if the object is okay.
+		throw "Couldn't create the mainWindow!";
 }
 

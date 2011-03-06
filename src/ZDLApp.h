@@ -36,12 +36,10 @@ class ZDLApp : public QApplication {
 
 	protected:
 	// Protected Variables.
-		bool           initOK;     ///< Object initialization status.
 		ZDLMainWindow *mainWindow; ///< Main window.
 
 	// Protected Functions.
-		bool getInitOK( );
-		        ZDLApp( int &argc, char **argv );
+		ZDLApp( int &argc, char **argv );
 };
 
 #endif // ZDLAPP_H
