@@ -59,7 +59,7 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	this->tabMain  = ZDLTabMain::newInstance(this);
 	this->tabMulti = ZDLTabMulti::newInstance(this);
 	if( !this->tabMain || !this->tabMulti )
-		throw "ZDLMainWindow: Couldn't create the interface tabs!";
+		throw "Couldn't create the interface tabs!";
 
 	tabsMain->addTab(this->tabMain, this->tabMain->getTabLabel());
 	tabsMain->addTab(this->tabMulti, this->tabMulti->getTabLabel());
@@ -72,7 +72,7 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	// Make sure all the widgets got created properly.
 	if( !layoutButtons   || !this->buttonExit   ||
 	    !this->buttonZDL || !this->buttonLaunch )
-		throw "ZDLMainWindow: Couldn't create the buttons!";
+		throw "Couldn't create the buttons!";
 	// Aaand add them to the layout.
 	layoutButtons->addWidget(buttonExit);
 	layoutButtons->addWidget(buttonZDL);
