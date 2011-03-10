@@ -25,22 +25,16 @@
 * @return New ZDLTab object on success, NULL on failure.
 */
 ZDLTab* ZDLTab::newInstance( QWidget *parentWidget ){
-	qDebug() << "ZDLTab: Creating a new instance.";
-	ZDLTab *newTab = new ZDLTab(parentWidget);
-	if( newTab->getInitOK() == FALSE ){
-		qCritical() << "ZDLTab: Couldn't create a new instance!";
+	qDebug() << "ZDLTab::newInstance: Creating a new ZDLTab instance.";
+	try {
+		ZDLTab *newTab = new ZDLTab(parentWidget);
+		return newTab;
+	} catch ( char const *except ){
+		qCritical() << "ZDLTab::newInstance: Caught exception:" << except;
 		return NULL;
 	}
-	return newTab;
-}
-
-/**
-* Get the object's initialization status.
-*
-* @return the object's initStatus.
-*/
-bool ZDLTab::getInitOK( ){
-	return this->initOK;
+	qCritical() << "ZDLTab::newInstance: Something weird hapened!";
+	return NULL; // Should never get here.
 }
 
 /**
@@ -49,12 +43,8 @@ bool ZDLTab::getInitOK( ){
 * @param  parentWidget  Parent widget to assign this widget to.
 */
 ZDLTab::ZDLTab( QWidget *parentWidget ) : QWidget( parentWidget ){
-	this->initOK = FALSE; // Initialize the object status.
-
 	// Make sure the tab has a label.
 	this->tabLabel = "Base Tab Object";
-
-	this->initOK = TRUE; // Class is good to go!
 }
 
 /**

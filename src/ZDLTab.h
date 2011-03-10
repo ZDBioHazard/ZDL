@@ -34,12 +34,10 @@ class ZDLTab : public QWidget {
 
 	protected:
 	// Protected Variables.
-		bool    initOK;   ///< Object initialization status.
 		QString tabLabel; ///< Text to be displayed on the tab.
 
 	// Protected Functions.
-		bool getInitOK( );
-		        ZDLTab( QWidget *parentWidget );
+		ZDLTab( QWidget *parentWidget );
 };
 
 #endif // ZDLTAB_H

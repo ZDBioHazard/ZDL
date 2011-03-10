@@ -25,13 +25,16 @@
 * @return New ZDLTabMulti object on success, NULL on failure.
 */
 ZDLTabMulti* ZDLTabMulti::newInstance( QWidget *parentWidget ){
-	qDebug() << "ZDLTabMulti: Creating a new instance.";
-	ZDLTabMulti *newTab = new ZDLTabMulti(parentWidget);
-	if( newTab->getInitOK() == FALSE ){
-		qCritical() << "ZDLTabMulti: Couldn't create a new instance!";
+	qDebug() << "ZDLTabMulti::newInstance: Creating a new ZDLTab instance.";
+	try {
+		ZDLTabMulti *newTab = new ZDLTabMulti(parentWidget);
+		return newTab;
+	} catch ( char const *except ){
+		qCritical() << "ZDLTabMulti::newInstance: Caught exception:" << except;
 		return NULL;
 	}
-	return newTab;
+	qCritical() << "ZDLTabMulti::newInstance: Something weird hapened!";
+	return NULL; // Should never get here.
 }
 
 /**
@@ -40,8 +43,6 @@ ZDLTabMulti* ZDLTabMulti::newInstance( QWidget *parentWidget ){
 * @param  parentWidget  Parent widget to assign this widget to.
 */
 ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
-	this->initOK = FALSE; // Initialize the object status.
-
 	// Set the tab name.
 	this->tabLabel = "Multiplayer";
 
@@ -61,10 +62,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	QLabelLayout *labelPlayers  = new QLabelLayout("Players", this);
 	        this->spinPlayers   = new QSpinBox(this);
 	if( !labelGameMode || !this->comboGameMode ||
-	    !labelPlayers  || !this->spinPlayers   ){
-		qCritical() << "ZDLTabMulti: Couldn't create the Mode/Players widgets!";
-		return; // Bail out.
-	}
+	    !labelPlayers  || !this->spinPlayers   )
+		throw "Couldn't create the Mode/Players widgets!";
 	// TODO: I don't like this list being here for some reason.
 	QStringList strGameModes;
 	strGameModes << "Single-Player"           << "Multiplayer: Join"
@@ -83,10 +82,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	QLabelLayout *labelPort = new QLabelLayout("Port", this);
 	        this->spinPort  = new QSpinBox(this);
 	if( !labelHost || !this->editHost ||
-	    !labelPort || !this->spinPort ){
-		qCritical() << "ZDLTabMulti: Couldn't create the Host/Port widgets!";
-		return; // Bail out.
-	}
+	    !labelPort || !this->spinPort )
+		throw "Couldn't create the Host/Port widgets!";
 	this->spinPort->setRange(MIN_PORT, MAX_PORT);
 	this->spinPort->setValue(DEFAULT_PORT);
 	labelHost->addWidget(this->editHost);
@@ -100,10 +97,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	QLabelLayout *labelTimeLimit = new QLabelLayout("Time Limit", this);
 	        this->spinTimeLimit  = new QSpinBox(this);
 	if( !labelFragLimit || !this->spinFragLimit ||
-	    !labelTimeLimit || !this->spinTimeLimit ){
-		qCritical() << "ZDLTabMulti: Couldn't create the Frag/Time limit widgets!";
-		return; // Bail out.
-	}
+	    !labelTimeLimit || !this->spinTimeLimit )
+		throw "Couldn't create the Frag/Time limit widgets!";
 	spinFragLimit->setRange(0, MAX_FRAGS);
 	labelFragLimit->addWidget(this->spinFragLimit);
 	layoutTab->addLayout(labelFragLimit, 0, 3, 1, 1);
@@ -114,10 +109,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// Magic / Enable Cheats.
 	this->checkMagic  = new QCheckBox("Magically Fix Everything", this);
 	this->checkCheats = new QCheckBox("Enable Cheats", this);
-	if( !this->checkMagic || !this->checkCheats ){
-		qCritical() << "ZDLTabMulti: Couldn't create the Checkboxes!";
-		return; // Bail out.
-	}
+	if( !this->checkMagic || !this->checkCheats )
+		throw "Couldn't create the Checkboxes!";
 	layoutTab->addWidget(this->checkMagic, 2, 0, 1, 2);
 	layoutTab->addWidget(this->checkCheats,  2, 2, 1, 2);
 
@@ -125,13 +118,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// Unfortunately a full-blown QSpacerItem has to be used in QGridLayouts
 	// instead of just addStretch(). :(
 	QSpacerItem *spacerMulti = new QSpacerItem(0, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
-	if( !spacerMulti ){
-		qCritical() << "ZDLTabMulti: Couldn't create the Spacer!";
-		return; // Bail out.
-	}
+	if( !spacerMulti )
+		throw "Couldn't create the Spacer!";
 	layoutTab->addItem(spacerMulti, 4, 0, 1, 3);
-
-	// Looks like we're done here. ...Finally.
-	this->initOK = TRUE; // Class is good to go!
 }
 

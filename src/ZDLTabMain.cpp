@@ -25,13 +25,16 @@
 * @return New ZDLTabMain object on success, NULL on failure.
 */
 ZDLTabMain* ZDLTabMain::newInstance( QWidget *parentWidget ){
-	qDebug() << "ZDLTabMain: Creating a new instance.";
-	ZDLTabMain *newTab = new ZDLTabMain(parentWidget);
-	if( newTab->getInitOK() == FALSE ){
-		qCritical() << "ZDLTabMain: Couldn't create a new instance!";
+	qDebug() << "ZDLTabMain::newInstance: Creating a new ZDLTab instance.";
+	try {
+		ZDLTabMain *newTab = new ZDLTabMain(parentWidget);
+		return newTab;
+	} catch ( char const *except ){
+		qCritical() << "ZDLTabMain::newInstance: Caught exception:" << except;
 		return NULL;
 	}
-	return newTab;
+	qCritical() << "ZDLTabMain::newInstance: Something weird hapened!";
+	return NULL; // Should never get here.
 }
 
 /**
@@ -40,8 +43,6 @@ ZDLTabMain* ZDLTabMain::newInstance( QWidget *parentWidget ){
 * @param  parentWidget  Parent widget to assign this widget to.
 */
 ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
-	this->initOK = FALSE; // Initialize the object status.
-
 	// This tab be called Jimmy!
 	this->tabLabel = "General";
 
@@ -71,10 +72,8 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	        this->buttonFilesRemove  = new QPushButton("Remove", this);
 	if( !layoutFiles          || !labelFiles              ||
 	    !layoutFilesButtons   || !this->listFiles         ||
-	    !this->buttonFilesAdd || !this->buttonFilesRemove ){
-		qCritical() << "ZDLTabMain: Couldn't create the External Files list!";
-		return; // Bail out.
-	}
+	    !this->buttonFilesAdd || !this->buttonFilesRemove )
+		throw "Couldn't create the External Files list!";
 	layoutFiles->addLayout(labelFiles);
 	labelFiles->addWidget(this->listFiles);
 	layoutFiles->addLayout(layoutFilesButtons);
@@ -90,20 +89,16 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		// Engine list.
 		QLabelLayout *labelEngines = new QLabelLayout("Game Engine", this);
 		        this->comboEngines = new QComboBox(this);
-		if( !labelEngines || !this->comboEngines ){
-			qCritical() << "ZDLTabMain: Couldn't create the Engines list!";
-			return; // Bail out.
-		}
+		if( !labelEngines || !this->comboEngines )
+			throw "Couldn't create the Engines list!";
 		labelEngines->addWidget(this->comboEngines);
 		layoutRightColumn->addLayout(labelEngines);
 
 		// IWAD list.
 		QLabelLayout *labelIWADs = new QLabelLayout("Game IWAD", this);
 		        this->listIWADs  = new QListWidget(this);
-		if( !labelIWADs || !this->listIWADs ){
-			qCritical() << "ZDLTabMain: Couldn't create the IWAD list!";
-			return; // Bail out.
-		}
+		if( !labelIWADs || !this->listIWADs )
+			throw "Couldn't create the IWAD list!";
 		labelIWADs->addWidget(this->listIWADs);
 		layoutRightColumn->addLayout(labelIWADs);
 
@@ -114,10 +109,8 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			// Warp box.
 			QLabelLayout *labelWarp = new QLabelLayout("Warp to Map", this);
 			        this->editWarp  = new QLineEdit(this);
-			if( !labelWarp || !this->editWarp ){
-				qCritical() << "ZDLTabMain: Couldn't create the Warp box!";
-				return; // Bail out.
-			}
+			if( !labelWarp || !this->editWarp )
+				throw "Couldn't create the Warp box!";
 			editWarp->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
 			labelWarp->addWidget(this->editWarp);
 			layoutWarpSkill->addLayout(labelWarp);
@@ -125,10 +118,8 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			// Skill box.
 			QLabelLayout *labelSkill = new QLabelLayout("Skill Level", this);
 			        this->comboSkill = new QComboBox(this);
-			if( !labelSkill || !this->comboSkill ){
-				qCritical() << "ZDLTabMain: Couldn't create the Skill box!";
-				return; // Bail out.
-			}
+			if( !labelSkill || !this->comboSkill )
+				throw "Couldn't create the Skill box!";
 			// TODO: I don't like this list being here for some reason.
 			QStringList strSkills;
 			strSkills << "Very Easy" << "Easy" << "Normal" << "Hard" << "Stupid-Hard";
@@ -140,14 +131,9 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// Extra Args box.
 	QLabelLayout *labelExtraArgs = new QLabelLayout("Extra Command-Line Arguments", this);
 	        this->editExtraArgs  = new QLineEdit(this);
-	if( !labelExtraArgs || !this->editExtraArgs ){
-		qCritical() << "ZDLTabMain: Couldn't create the Extra Args box!";
-		return; // Bail out.
-	}
+	if( !labelExtraArgs || !this->editExtraArgs )
+		throw "Couldn't create the Extra Args box!";
 	labelExtraArgs->addWidget(this->editExtraArgs);
 	layoutTab->addLayout(labelExtraArgs);
-
-	// Looks like we're done here. ...Finally.
-	this->initOK = TRUE; // Class is good to go!
 }
 
