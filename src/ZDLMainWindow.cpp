@@ -25,22 +25,16 @@
 * @return New ZDLMainWindow object on success, NULL on failure.
 */
 ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
-	qDebug() << "ZDLMainWindow: Creating a new instance.";
-	ZDLMainWindow *newMainWindow = new ZDLMainWindow(windowTitle);
-	if( newMainWindow->getInitOK() == FALSE ){
-		qCritical() << "ZDLMainWindow: Couldn't create a new instance!";
+	qDebug() << "ZDLMainWindow::newInstance: Creating a new ZDLMainWindow instance.";
+	try {
+		ZDLMainWindow *newMainWindow = new ZDLMainWindow(windowTitle);
+		return newMainWindow;
+	} catch ( char const *except ){
+		qCritical() << "ZDLMainWindow::newInstance: Caught exception:" << except;
 		return NULL;
 	}
-	return newMainWindow;
-}
-
-/**
-* Get the object's initialization status.
-*
-* @return the object's initStatus.
-*/
-bool ZDLMainWindow::getInitOK( ){
-	return this->initOK;
+	qCritical() << "ZDLMainWindow::newInstance: Something weird hapened!";
+	return NULL; // Should never get here.
 }
 
 /**
@@ -49,7 +43,6 @@ bool ZDLMainWindow::getInitOK( ){
 * @param  windowTitle  The new window's title.
 */
 ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
-	this->initOK = FALSE; // Initialize the object status.
 	this->setWindowTitle(windowTitle);
 
 	// Set up the main layout.
@@ -65,10 +58,9 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	// TODO: Eventually this should be some sort of iterator.
 	this->tabMain  = ZDLTabMain::newInstance(this);
 	this->tabMulti = ZDLTabMulti::newInstance(this);
-	if( !this->tabMain || !this->tabMulti ){
-		qCritical() << "ZDLMainWindow: Couldn't create the interface tabs!";
-		return; // Bail out.
-	}
+	if( !this->tabMain || !this->tabMulti )
+		throw "ZDLMainWindow: Couldn't create the interface tabs!";
+
 	tabsMain->addTab(this->tabMain, this->tabMain->getTabLabel());
 	tabsMain->addTab(this->tabMulti, this->tabMulti->getTabLabel());
 
@@ -79,10 +71,8 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	       this->buttonLaunch  = new QPushButton("Launch", this);
 	// Make sure all the widgets got created properly.
 	if( !layoutButtons   || !this->buttonExit   ||
-	    !this->buttonZDL || !this->buttonLaunch ){
-		qCritical() << "ZDLMainWindow: Couldn't create the buttons!";
-		return; // Bail out.
-	}
+	    !this->buttonZDL || !this->buttonLaunch )
+		throw "ZDLMainWindow: Couldn't create the buttons!";
 	// Aaand add them to the layout.
 	layoutButtons->addWidget(buttonExit);
 	layoutButtons->addWidget(buttonZDL);
@@ -93,10 +83,8 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	// Create the menu attached to the ZDL button.
 	 this->menuZDL   = new QMenu("ZDL", this->buttonZDL);
 	QMenu *menuReset = new QMenu("Reset Tab", this->buttonZDL);
-	if( !this->menuZDL || !menuReset ){
-		qCritical() << "ZDLMainWindow: Couldn't create the ZDL button menus!";
-		return; // Bail out.
-	}
+	if( !this->menuZDL || !menuReset )
+		throw "Couldn't create the ZDL button menus!";
 	this->menuZDL->addAction("Show &Command Line");
 		// TODO: This should iterate through all the tabs.
 		menuReset->addAction("&Reset All Tabs");
@@ -119,8 +107,5 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	// Center the window on the screen.
 	QRect rectDesktop = QApplication::desktop()->screenGeometry(this);
 	this->move(rectDesktop.center()-this->rect().center());
-
-	// Get outta' here!
-	this->initOK = TRUE; // Class is good to go!
 }
 

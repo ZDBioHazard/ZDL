@@ -47,9 +47,6 @@ class ZDLMainWindow : public QWidget {
 		static ZDLMainWindow* newInstance( QString windowTitle );
 
 	protected:
-	// Protected Variables.
-		bool initOK; ///< Object initialization status.
-
 	// Protected Tab Objects
 		ZDLTab *tabMain;  ///< General Tab
 		ZDLTab *tabMulti; ///< Multiplayer Tab
@@ -62,8 +59,7 @@ class ZDLMainWindow : public QWidget {
 		QMenu       *menuZDL;      ///< ZDL button menu.
 
 	// Protected Functions.
-		bool     getInitOK( );
-		     ZDLMainWindow( QString windowTitle );
+		ZDLMainWindow( QString windowTitle );
 };
 
 #endif // ZDLMAINWINDOW_H
