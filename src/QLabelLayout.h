@@ -39,10 +39,33 @@ class QLabelLayout : public QVBoxLayout {
 		* @param  parentWidget  Parent widget to assign to the label widget.
 		*/
 		QLabelLayout( QString widgetLabel, QWidget *parentWidget ) : QVBoxLayout(){
-			QLabel *labelLabel = new QLabel(widgetLabel, parentWidget);
+			if( !(this->labelLabel = new QLabel(widgetLabel, parentWidget)) )
+				throw "QLabelLayout: Couldn't create the Label!";
 			this->setSpacing(0);
 			this->addWidget(labelLabel);
 		}
+
+		/**
+		* Gets the label text of the QLabelLayout.
+		*
+		* @return QString containing the label text.
+		*/
+		QString getLabelText( ){
+			return this->labelLabel->text();
+		}
+
+		/**
+		* Sets the label text of the QLabelLayout.
+		*
+		* @param  newText  New label text.
+		*/
+		void setLabelText( QString newText ){
+			return this->labelLabel->setText(newText);
+		}
+
+	protected:
+	// Protected Widgets.
+		QLabel *labelLabel; ///< Widget Label.
 };
 
 #endif // QLABELLAYOUT_H
