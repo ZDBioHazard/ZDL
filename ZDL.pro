@@ -16,11 +16,12 @@
 ###############################################################################
 
 # This needs to be += so you can specify debug mode on the qmake command line.
-CONFIG += qt
+CONFIG += qt resources
 
 # Put all the temp files in another directory.
-    MOC_DIR = ./obj/
-OBJECTS_DIR = ./obj/
+MOC_DIR     = obj/
+OBJECTS_DIR = obj/
+RCC_DIR     = obj/
 
 HEADERS = src/Version.h \
           src/QLabelLayout.h \
@@ -36,6 +37,8 @@ SOURCES = src/ZDL.cpp \
           src/ZDLTab.cpp \
           src/ZDLTabMain.cpp \
           src/ZDLTabMulti.cpp
+
+RESOURCES = res/ZDL.qrc
 
 # Build information is platform-dependant.
 unix {

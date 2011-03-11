@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!-- This SVG was painstakingly handcrafted by BioHazard. Don't mess it up with Inkscape! :P -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="64" height="64">
+	<linearGradient id="4g" spreadMethod="reflect" gradientUnits="userSpaceOnUse" x1="38" y1="13" x2="50" y2="25">
+		<stop style="stop-color: #FFF" offset="0" />
+		<stop style="stop-color: #222" offset="1" />
+	</linearGradient>
+	<linearGradient id="ZDLg" gradientUnits="userSpaceOnUse" x1="1" y1="43" x2="56" y2="21">
+		<stop style="stop-color: #800" offset="0" />
+		<stop style="stop-color: #F80" offset="1" />
+	</linearGradient>
+	<g style="fill: url(#4g); stroke: #000; stroke-width: 2" transform="translate(0, 10)">
+		<path d="M 50,42 56,42 56,31 63,31 63,25 56,25 56,1 48,1 28,23 28,31 50,31 z M 50,7 50,25 34,25 Z" />
+		<g style="fill: url(#ZDLg)">
+			<path d="M 1,43 1,39 12,25 1,25 1,21 18,21 18,25 7,39 18,39 18,43 Z" />
+			<path d="M 20,43 20,21 28,21 C 28,21 37,21 37,32.5 37,43 28,43 28,43 Z
+			         M 24,25 24,39 28,39 C 28,39 33,39 33,32.5 33,25 28,25 28,25 Z" />
+			<path d="M 39,43 39,21 43,21 43,39 56,39 56,43 Z" />
+		</g>
+	</g>
+</svg>
+

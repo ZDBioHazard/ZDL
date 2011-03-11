@@ -43,7 +43,9 @@ ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
 * @param  windowTitle  The new window's title.
 */
 ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
+	// Set some window properties.
 	this->setWindowTitle(windowTitle);
+	this->setWindowIcon(QIcon(":/zdlicon"));
 
 	// Set up the main layout.
 	QVBoxLayout *layoutMain = new QVBoxLayout();
