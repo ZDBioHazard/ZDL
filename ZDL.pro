@@ -45,6 +45,8 @@ unix {
 	DEFINES += ZDL_VERSION="\"\\\"`git describe --always`\\\"\""
 	DEFINES += ZDL_COMPILEDATE="\"\\\"`date +'%a, %b %d %Y %H:%M:%S %Z'`\\\"\""
 	DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo` (Qt $${QT_VERSION})\\\"\""
+	# Nobody likes case-sensitive binaries in 'nix. :p
+	TARGET = "zdl"
 } win32 {
 	DEFINES += ZDL_BUILDINFO="\"\\\"Windows (Qt $${QT_VERSION})\\\"\""
 }

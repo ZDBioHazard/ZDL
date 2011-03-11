@@ -2,4 +2,6 @@ Makefile
 obj/
 doc/
 ZDL
+zdl
+ZDL.exe
 
