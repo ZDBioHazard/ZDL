@@ -22,21 +22,18 @@ CONFIG += qt resources
 MOC_DIR     = obj/
 OBJECTS_DIR = obj/
 RCC_DIR     = obj/
+INCLUDEPATH = src/
+DEPENDPATH  = src/
 
-HEADERS = src/Version.h \
-          src/QLabelLayout.h \
-          src/ZDLApp.h \
-          src/ZDLMainWindow.h \
-          src/ZDLTab.h \
-          src/ZDLTabMain.h \
-          src/ZDLTabMulti.h
+HEADERS = \
+	Version.h QLabelLayout.h ZDLApp.h \
+	ZDLMainWindow.h \
+	ZDLTab.h ZDLTabMain.h ZDLTabMulti.h \
 
-SOURCES = src/ZDL.cpp \
-          src/ZDLApp.cpp \
-          src/ZDLMainWindow.cpp \
-          src/ZDLTab.cpp \
-          src/ZDLTabMain.cpp \
-          src/ZDLTabMulti.cpp
+SOURCES = \
+	ZDL.cpp ZDLApp.cpp \
+	ZDLMainWindow.cpp \
+	ZDLTab.cpp ZDLTabMain.cpp ZDLTabMulti.cpp
 
 RESOURCES = res/ZDL.qrc
 
