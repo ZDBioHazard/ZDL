@@ -66,11 +66,11 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		throw "Couldn't create the Mode/Players widgets!";
 	// TODO: I don't like this list being here for some reason.
 	QStringList strGameModes;
-	strGameModes << "Single-Player"           << "Multiplayer: Join"
-	             << "Multiplayer: Host Co-Op" << "Multiplayer: Host Deathmatch";
+	strGameModes << "Single-Player" << "Multi-Player: Co-Op" << "Multi-Player: Deathmatch";
 	this->comboGameMode->addItems(strGameModes);
 	// TODO: This should be set by the port config eventually.
-	this->spinPlayers->setRange(1, 8);
+	this->spinPlayers->setRange(0, 8);
+	this->spinPlayers->setSpecialValueText("Joining");
 	labelGameMode->addWidget(this->comboGameMode);
 	layoutTab->addLayout(labelGameMode, 0, 0, 1, 2);
 	labelPlayers->addWidget(this->spinPlayers);
