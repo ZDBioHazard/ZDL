@@ -17,6 +17,10 @@
 */
 #include "ZDLMainWindow.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Public Functions
+///////////////////////////////////////////////////////////////////////////////
+
 /**
 * Instance generator for ZDLMainWindow.
 *
@@ -35,6 +39,19 @@ ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
 	}
 	qCritical() << "ZDLMainWindow::newInstance: Something weird hapened!";
 	return NULL; // Should never get here.
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Protected Functions
+///////////////////////////////////////////////////////////////////////////////
+
+/**
+* Closes the ZDLMainWindow.
+*/
+void ZDLMainWindow::onExitClicked( ){
+	qDebug() << "ZDLMainWindow: Exit button clicked.";
+	// TODO: Remember to save everything!
+	this->close();
 }
 
 /**
@@ -81,6 +98,9 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	layoutButtons->addStretch();
 	layoutButtons->addWidget(buttonLaunch);
 	layoutMain->addLayout(layoutButtons);
+
+	// Connect the button signals.
+	connect(buttonExit, SIGNAL(clicked()), this, SLOT(onExitClicked()));
 
 	// Create the menu attached to the ZDL button.
 	 this->menuZDL   = new QMenu("ZDL", this->buttonZDL);

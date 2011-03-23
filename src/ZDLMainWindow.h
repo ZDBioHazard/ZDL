@@ -42,9 +42,15 @@
 * or dock, I'll think about changing it. :P
 */
 class ZDLMainWindow : public QWidget {
+	Q_OBJECT
+
 	public:
 	// Public Functions.
 		static ZDLMainWindow* newInstance( QString windowTitle );
+
+	protected slots:
+	// Protected Slots.
+		void onExitClicked( );
 
 	protected:
 	// Protected Tab Objects
