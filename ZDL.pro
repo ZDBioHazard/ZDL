@@ -39,12 +39,14 @@ RESOURCES = res/ZDL.qrc
 
 # Build information is platform-dependant.
 unix {
+	message("Building for Unix, adding cool build info and stuff.")
 	DEFINES += ZDL_VERSION="\"\\\"`git describe --always`\\\"\""
 	DEFINES += ZDL_COMPILEDATE="\"\\\"`date +'%a, %b %d %Y %H:%M:%S %Z'`\\\"\""
 	DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo` (Qt $${QT_VERSION})\\\"\""
 	# Nobody likes case-sensitive binaries in 'nix. :p
 	TARGET = "zdl"
 } win32 {
+	message("Building for Windows, disabling the cool build info stuff.")
 	DEFINES += ZDL_BUILDINFO="\"\\\"Windows (Qt $${QT_VERSION})\\\"\""
 }
 
@@ -52,7 +54,8 @@ unix {
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Disable debug messages in release mode.
-release {
+CONFIG(release, debug|release){
+	message("Release version, disabling debun messages.")
 	DEFINES += QT_NO_DEBUG_STREAM
 }
 
