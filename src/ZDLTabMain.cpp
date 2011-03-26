@@ -17,6 +17,10 @@
 */
 #include "ZDLTabMain.h"
 
+///////////////////////////////////////////////////////////////////////////////
+// Public Functions
+///////////////////////////////////////////////////////////////////////////////
+
 /**
 * Instance generator for ZDLTabMain.
 *
@@ -35,6 +39,24 @@ ZDLTabMain* ZDLTabMain::newInstance( QWidget *parentWidget ){
 	}
 	qCritical() << "ZDLTabMain::newInstance: Something weird hapened!";
 	return NULL; // Should never get here.
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Protected Functions
+///////////////////////////////////////////////////////////////////////////////
+
+/**
+* Add files to the files list.
+*/
+void ZDLTabMain::onFilesAddClicked( ){
+	qWarning() << "ZDLTabMain: FilesAdd button clicked. (Stub)";
+}
+
+/**
+* Remove files from the files list.
+*/
+void ZDLTabMain::onFilesRemoveClicked( ){
+	qWarning() << "ZDLTabMain: FilesRemove button clicked. (Stub)";
 }
 
 /**
@@ -81,6 +103,10 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutFilesButtons->addStretch();
 	layoutFilesButtons->addWidget(this->buttonFilesRemove);
 	layoutColumns->addLayout(layoutFiles);
+
+	// Connect the button signals.
+	connect(buttonFilesAdd,    SIGNAL(clicked()), this, SLOT(onFilesAddClicked()));
+	connect(buttonFilesRemove, SIGNAL(clicked()), this, SLOT(onFilesRemoveClicked()));
 
 	// Right Column
 	QVBoxLayout *layoutRightColumn = new QVBoxLayout();

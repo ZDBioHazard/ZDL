@@ -34,9 +34,16 @@
 * Main user interface class.
 */
 class ZDLTabMain : public ZDLTab {
+	Q_OBJECT
+
 	public:
 	// Public Functions.
 		static ZDLTabMain* newInstance( QWidget *parentWidget );
+
+	protected slots:
+	// Protected Slots.
+		void onFilesAddClicked( );
+		void onFilesRemoveClicked( );
 
 	protected:
 	// Protected Enums.

@@ -50,6 +50,7 @@ class ZDLMainWindow : public QWidget {
 
 	protected slots:
 	// Protected Slots.
+		void onLaunchClicked( );
 		void onExitClicked( );
 
 	protected:

@@ -46,6 +46,13 @@ ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
+* This is what the whole application is about.
+*/
+void ZDLMainWindow::onLaunchClicked( ){
+	qWarning() << "ZDLMainWindow: Launch button clicked. (Stub)";
+}
+
+/**
 * Closes the ZDLMainWindow.
 */
 void ZDLMainWindow::onExitClicked( ){
@@ -100,6 +107,7 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	layoutMain->addLayout(layoutButtons);
 
 	// Connect the button signals.
+	connect(buttonLaunch, SIGNAL(clicked()), this, SLOT(onLaunchClicked()));
 	connect(buttonExit, SIGNAL(clicked()), this, SLOT(onExitClicked()));
 
 	// Create the menu attached to the ZDL button.
