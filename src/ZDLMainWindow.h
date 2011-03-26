@@ -49,9 +49,16 @@ class ZDLMainWindow : public QWidget {
 		static ZDLMainWindow* newInstance( QString windowTitle );
 
 	protected slots:
-	// Protected Slots.
+	// Buttons.
 		void onLaunchClicked( );
 		void onExitClicked( );
+
+	// Menu Items.
+		void onMenuShowCommand( );
+		void onMenuSavePreset( );
+		void onMenuLoadPreset( );
+		void onMenuConfigWindow( );
+		void onMenuAboutWindow( );
 
 	protected:
 	// Protected Tab Objects
@@ -64,6 +71,13 @@ class ZDLMainWindow : public QWidget {
 		QPushButton *buttonZDL;    ///< ZDL button.
 		QPushButton *buttonLaunch; ///< Launch button.
 		QMenu       *menuZDL;      ///< ZDL button menu.
+
+	// Protected Actions.
+		QAction *actShowCommand;  ///< Show Command.
+		QAction *actSavePreset;   ///< Save Preset.
+		QAction *actLoadPreset;   ///< Load Preset.
+		QAction *actConfigWindow; ///< Configuration.
+		QAction *actAboutWindow;  ///< About ZDL.
 
 	// Protected Functions.
 		ZDLMainWindow( QString windowTitle );

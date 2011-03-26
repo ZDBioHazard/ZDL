@@ -42,7 +42,7 @@ ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle ){
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// Protected Functions
+// Protected Slots
 ///////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -60,6 +60,45 @@ void ZDLMainWindow::onExitClicked( ){
 	// TODO: Remember to save everything!
 	this->close();
 }
+
+/**
+* Show the command line that will be run when "Launch" is pressed.
+*/
+void ZDLMainWindow::onMenuShowCommand( ){
+	qWarning() << "ZDLMainWindow: Show Command menu item selected. (Stub)";
+}
+
+/**
+* Save Preset file.
+*/
+void ZDLMainWindow::onMenuSavePreset( ){
+	qWarning() << "ZDLMainWindow: Save Preset menu item selected. (Stub)";
+}
+
+/**
+* Load Preset file.
+*/
+void ZDLMainWindow::onMenuLoadPreset( ){
+	qWarning() << "ZDLMainWindow: Load Preset menu item selected. (Stub)";
+}
+
+/**
+* Show the Configuration window.
+*/
+void ZDLMainWindow::onMenuConfigWindow( ){
+	qWarning() << "ZDLMainWindow: Configuration menu item selected. (Stub)";
+}
+
+/**
+* Show the About window.
+*/
+void ZDLMainWindow::onMenuAboutWindow( ){
+	qWarning() << "ZDLMainWindow: About menu item selected. (Stub)";
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Protected Functions
+///////////////////////////////////////////////////////////////////////////////
 
 /**
 * Constructor for ZDLMainWindow.
@@ -107,28 +146,36 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	layoutMain->addLayout(layoutButtons);
 
 	// Connect the button signals.
-	connect(buttonLaunch, SIGNAL(clicked()), this, SLOT(onLaunchClicked()));
-	connect(buttonExit, SIGNAL(clicked()), this, SLOT(onExitClicked()));
+	connect(this->buttonLaunch, SIGNAL(clicked()), this, SLOT(onLaunchClicked()));
+	connect(this->buttonExit,   SIGNAL(clicked()), this, SLOT(onExitClicked()));
 
 	// Create the menu attached to the ZDL button.
-	 this->menuZDL   = new QMenu("ZDL", this->buttonZDL);
-	QMenu *menuReset = new QMenu("Reset Tab", this->buttonZDL);
-	if( !this->menuZDL || !menuReset )
+	// TODO: Include a tab reset menu.
+	this->menuZDL         = new QMenu("ZDL", this->buttonZDL);
+	this->actShowCommand  = new QAction("S&how Command Line", this->menuZDL);
+	this->actSavePreset   = new QAction("&Save Preset", this->menuZDL);
+	this->actLoadPreset   = new QAction("&Load Preset", this->menuZDL);
+	this->actConfigWindow = new QAction("&Configuration", this->menuZDL);
+	this->actAboutWindow  = new QAction("&About ZDL", this->menuZDL);
+	if( !this->menuZDL         || !this->actShowCommand ||
+	    !this->actSavePreset   || !this->actLoadPreset  ||
+	    !this->actConfigWindow || !this->actAboutWindow )
 		throw "Couldn't create the ZDL button menus!";
-	this->menuZDL->addAction("Show &Command Line");
-		// TODO: This should iterate through all the tabs.
-		menuReset->addAction("&Reset All Tabs");
-		menuReset->addSeparator();
-		menuReset->addAction("Reset "+tabMain->getTabLabel()+" Tab");
-		menuReset->addAction("Reset "+tabMulti->getTabLabel()+" Tab");
-		this->menuZDL->addMenu(menuReset);
+	this->menuZDL->addAction(this->actShowCommand);
 	this->menuZDL->addSeparator();
-	this->menuZDL->addAction("&Load Preset");
-	this->menuZDL->addAction("&Save Preset");
+	this->menuZDL->addAction(this->actSavePreset);
+	this->menuZDL->addAction(this->actLoadPreset);
 	this->menuZDL->addSeparator();
-	this->menuZDL->addAction("&Preferences");
-	this->menuZDL->addAction("&About ZDL");
+	this->menuZDL->addAction(this->actConfigWindow);
+	this->menuZDL->addAction(this->actAboutWindow);
 	this->buttonZDL->setMenu(menuZDL);
+
+	// Connect the menu signals.
+	connect(this->actShowCommand,  SIGNAL(triggered()), this, SLOT(onMenuShowCommand()));
+	connect(this->actSavePreset,   SIGNAL(triggered()), this, SLOT(onMenuSavePreset()));
+	connect(this->actLoadPreset,   SIGNAL(triggered()), this, SLOT(onMenuLoadPreset()));
+	connect(this->actConfigWindow, SIGNAL(triggered()), this, SLOT(onMenuConfigWindow()));
+	connect(this->actAboutWindow,  SIGNAL(triggered()), this, SLOT(onMenuAboutWindow()));
 
 	// Well now, wasn't that fun? Time to prep the window and show it.
 	// TODO: The window position and size should be pulled from the config.
