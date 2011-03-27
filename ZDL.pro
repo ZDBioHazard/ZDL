@@ -55,7 +55,7 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Disable debug messages in release mode.
 CONFIG(release, debug|release){
-	message("Release version, disabling debun messages.")
+	message("Release version, disabling debug messages.")
 	DEFINES += QT_NO_DEBUG_STREAM
 }
 
