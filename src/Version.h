@@ -24,17 +24,17 @@
 	#define ZDL_VERSION "3.8.7"
 #endif // ZDL_VERSION
 
-#ifndef ZDL_COMPILEDATE
-	/// Compile date. Should be readable by people.
+#ifndef ZDL_TIMESTAMP
+	/// Compile time. Should be readable by people.
 	/// The full value is set by defines in ZDL.pro when possible.
-	#define ZDL_COMPILEDATE "Unknown Compile Date"
-#endif // ZDL_COMPILEDATE
+	#define ZDL_TIMESTAMP "Unknown Compile Time"
+#endif // ZDL_TIMESTAMP
 
-#ifndef ZDL_BUILDINFO
-	/// Build information. Should include OS and Architecture.
+#ifndef ZDL_PLATFORM
+	/// Build platform. Should include OS and Architecture.
 	/// The full value is set by defines in ZDL.pro when possible.
-	#define ZDL_BUILDINFO "Unknown Build"
-#endif // ZDL_BUILDINFO
+	#define ZDL_PLATFORM "Unknown Platform"
+#endif // ZDL_PLATFORM
 
 #ifndef ZDL_APPTITLE
 	/// Application Title, including version number.

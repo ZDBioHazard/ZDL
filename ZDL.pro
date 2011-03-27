@@ -37,25 +37,31 @@ SOURCES = \
 
 RESOURCES = res/ZDL.qrc
 
-# Build information is platform-dependant.
-unix {
-	message("Building for Unix, adding cool build info and stuff.")
-	DEFINES += ZDL_VERSION="\"\\\"`git describe --always`\\\"\""
-	DEFINES += ZDL_COMPILEDATE="\"\\\"`date +'%a, %b %d %Y %H:%M:%S %Z'`\\\"\""
-	DEFINES += ZDL_BUILDINFO="\"\\\"`uname -mo` (Qt $${QT_VERSION})\\\"\""
-	# Nobody likes case-sensitive binaries in 'nix. :p
-	TARGET = "zdl"
-} win32 {
-	message("Building for Windows, disabling the cool build info stuff.")
-	DEFINES += ZDL_BUILDINFO="\"\\\"Windows (Qt $${QT_VERSION})\\\"\""
-}
-
 # Use faster strings.
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
+
+# Nifty build information defines for Versions.h.
+ZDL_VERSION   = $$system("git describe --tags --always")
+!isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"$${ZDL_VERSION}\\\"\""
+
+ZDL_TIMESTAMP = $$system("date +'%b %d %Y %H:%M:%S %Z'")
+!isEmpty(ZDL_TIMESTAMP):DEFINES += ZDL_TIMESTAMP="\"\\\"$${ZDL_TIMESTAMP}\\\"\""
+
+# Platform is special because we always want the Qt version.
+ZDL_PLATFORM  = $$system("uname -mo")
+isEmpty(ZDL_PLATFORM):ZDL_PLATFORM = "Unknown Platform"
+DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
 
 # Disable debug messages in release mode.
 CONFIG(release, debug|release){
 	message("Release version, disabling debug messages.")
 	DEFINES += QT_NO_DEBUG_STREAM
+}
+
+# Platform-specific stuff.
+unix {
+	# Nobody likes case-sensitive binaries in 'nix. :p
+	message("building for 'nix, the binary will be lowercase. ;)")
+	TARGET = "zdl"
 }
 
