@@ -27,12 +27,12 @@ DEPENDPATH  = src/
 
 HEADERS = \
 	Version.h QLabelLayout.h ZDLApp.h \
-	ZDLMainWindow.h \
+	ZDLMainWindow.h ZDLAboutWindow.h \
 	ZDLTab.h ZDLTabMain.h ZDLTabMulti.h \
 
 SOURCES = \
 	ZDL.cpp ZDLApp.cpp \
-	ZDLMainWindow.cpp \
+	ZDLMainWindow.cpp ZDLAboutWindow.cpp \
 	ZDLTab.cpp ZDLTabMain.cpp ZDLTabMulti.cpp
 
 RESOURCES = res/ZDL.qrc

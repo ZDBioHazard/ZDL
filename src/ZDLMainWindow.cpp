@@ -93,7 +93,20 @@ void ZDLMainWindow::onMenuConfigWindow( ){
 * Show the About window.
 */
 void ZDLMainWindow::onMenuAboutWindow( ){
-	qWarning() << "ZDLMainWindow: About menu item selected. (Stub)";
+	qDebug() << "ZDLMainWindow: About menu item selected.";
+
+	// Create the About window instance if it doesn't exist yet.
+	if( !this->aboutWindow ){
+		this->aboutWindow = ZDLAboutWindow::newInstance(this);
+		if( !this->aboutWindow ){ // Check if the object is okay.
+			qCritical() << "ZDLMainWindow: Couldn't create the ZDLAboutWindow.";
+			return; // Run before it's too late!
+		}
+	} else { // Show, Focus and Activate the window if it already exists.
+		this->aboutWindow->show();
+		this->aboutWindow->raise();
+		this->aboutWindow->activateWindow();
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -109,6 +122,9 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle ) : QWidget( ){
 	// Set some window properties.
 	this->setWindowTitle(windowTitle);
 	this->setWindowIcon(QIcon(":/zdlicon"));
+
+	// Initialize member variables that won't be used in this function.
+	this->aboutWindow = NULL;
 
 	// Set up the main layout.
 	QVBoxLayout *layoutMain = new QVBoxLayout();

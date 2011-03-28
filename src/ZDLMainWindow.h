@@ -21,6 +21,8 @@
 #include "ZDLTabMain.h"
 #include "ZDLTabMulti.h"
 
+#include "ZDLAboutWindow.h"
+
 // Qt Stuff.
 #include <QDebug>
 #include <QtGui/QWidget>
@@ -61,6 +63,9 @@ class ZDLMainWindow : public QWidget {
 		void onMenuAboutWindow( );
 
 	protected:
+	// Protected Windows.
+		ZDLAboutWindow *aboutWindow; ///< About window.
+
 	// Protected Tab Objects
 		ZDLTab *tabMain;  ///< General Tab
 		ZDLTab *tabMulti; ///< Multiplayer Tab
