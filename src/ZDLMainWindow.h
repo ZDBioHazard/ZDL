@@ -48,7 +48,7 @@ class ZDLMainWindow : public QWidget {
 
 	public:
 	// Public Functions.
-		static ZDLMainWindow* newInstance( QString windowTitle );
+		static ZDLMainWindow* newInstance( QString windowTitle, QWidget *parentWidget = NULL );
 
 	protected slots:
 	// Buttons.
@@ -85,7 +85,7 @@ class ZDLMainWindow : public QWidget {
 		QAction *actAboutWindow;  ///< About ZDL.
 
 	// Protected Functions.
-		ZDLMainWindow( QString windowTitle );
+		ZDLMainWindow( QString windowTitle, QWidget *parentWidget );
 };
 
 #endif // ZDLMAINWINDOW_H
