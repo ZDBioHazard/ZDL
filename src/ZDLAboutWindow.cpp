@@ -60,13 +60,57 @@ ZDLAboutWindow::ZDLAboutWindow( QWidget *parentWidget ) : QDialog( parentWidget 
 	layoutMain->setContentsMargins(6, 6, 6, 6); // The usual widget spacing.
 	this->setLayout(layoutMain);
 
-	// Create the button down at the bottom.
+	// Display the logo at the top.
+	QHBoxLayout *layoutLogo = new QHBoxLayout();
+	QLabel      *labelLogo  = new QLabel("ZDL Logo", this);
+	QLabel      *labelTitle = new QLabel("v"ZDL_VERSION, this);
+	                                     // The <b> tags are to make the &copy; work.
+	QLabel      *labelCopy  = new QLabel("<b>&copy; 2011 Ryan Turner / Vectec Software</b>", this);
+	if( !layoutLogo || !labelLogo || !labelTitle || !labelCopy )
+		throw "Couldn't create the logo area!";
+	layoutLogo->setSpacing(32); // Put some space between the logo and version.
+	labelLogo->setPixmap(QPixmap(":/zdlicon"));
+	labelTitle->setFont(QFont("", 16)); // Bigger font.
+	labelCopy->setAlignment(Qt::AlignCenter);
+
+	layoutLogo->addWidget(labelLogo);
+	layoutLogo->addStretch();
+	layoutLogo->addWidget(labelTitle);
+	layoutMain->addLayout(layoutLogo);
+	layoutMain->addStretch();
+	layoutMain->addWidget(labelCopy);
+
+	// Special Thanks area.
+	QFrame *lineTop     = new QFrame(this);
+	QFrame *lineBottom  = new QFrame(this);
+	QLabel *labelThanks = new QLabel(
+		// Yeah I know it's a fake list, but a HTML
+		// list weirds out at different font sizes.
+		"<p style=\"white-space: pre-wrap\">\n"
+			"<b>Special Thanks To:</b>\n"
+			"  &bull; QBasicer\n"
+			"  &bull; Risen\n"
+			"  &bull; NeuralStunner\n"
+			"  &bull; Enjay\n"
+			"  &bull; The ZDoom forumers.\n"
+			"  &bull; The non-idle #zdoom users. ;)\n"
+		"</p>", this);
+	if( !lineTop || !lineBottom || !labelThanks )
+		throw "Couldn't create the thanks label!";
+	lineTop->setFrameStyle(QFrame::HLine);
+	lineBottom->setFrameStyle(QFrame::HLine);
+	layoutMain->addWidget(lineTop);
+	layoutMain->addWidget(labelThanks);
+	layoutMain->addWidget(lineBottom);
+
+	// Create the build info and button down at the bottom.
 	QHBoxLayout *layoutButton = new QHBoxLayout();
+	QLabel      *labelInfo    = new QLabel(ZDL_TIMESTAMP"\n"ZDL_PLATFORM, this);
 	QPushButton *buttonClose  = new QPushButton("Close", this);
 	// Make sure all the widgets got created properly.
-	if( !layoutButton || !buttonClose )
-		throw "Couldn't create the Close button!";
-	// Aaand add them to the layout.
+	if( !layoutButton || !labelInfo || !buttonClose )
+		throw "Couldn't create the info/button area!";
+	layoutButton->addWidget(labelInfo);
 	layoutButton->addStretch();
 	layoutButton->addWidget(buttonClose);
 	layoutMain->addLayout(layoutButton);

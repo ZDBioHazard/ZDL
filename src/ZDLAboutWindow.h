@@ -18,11 +18,14 @@
 #ifndef ZDLABOUTWINDOW_H
 #define ZDLABOUTWINDOW_H
 
+#include "Version.h"
+
 // Qt Stuff.
 #include <QDebug>
 #include <QtGui/QDialog>
 #include <QtGui/QVBoxLayout>
 #include <QtGui/QHBoxLayout>
+#include <QtGui/QLabel>
 #include <QtGui/QPushButton>
 
 /**
