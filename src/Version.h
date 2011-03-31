@@ -18,6 +18,9 @@
 #ifndef VERSION_H
 #define VERSION_H
 
+/// Application Name. In case you make your own flavor of ZDL.
+#define ZDL_NAME "ZDL"
+
 #ifndef ZDL_VERSION
 	/// Simple version number.
 	/// The full value is set by defines in ZDL.pro when possible.
@@ -35,12 +38,6 @@
 	/// The full value is set by defines in ZDL.pro when possible.
 	#define ZDL_PLATFORM "Unknown Platform"
 #endif // ZDL_PLATFORM
-
-#ifndef ZDL_APPTITLE
-	/// Application Title, including version number.
-	// TODO: Should support i18n.
-	#define ZDL_APPTITLE "ZDL "ZDL_VERSION
-#endif // ZDL_APPTITLE
 
 #endif // VERSION_H
 

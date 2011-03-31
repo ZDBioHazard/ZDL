@@ -46,7 +46,7 @@ ZDLApp* ZDLApp::newInstance( int &argc, char **argv ){
 */
 ZDLApp::ZDLApp( int &argc, char **argv ) : QApplication( argc, argv ){
 	// Set-up the main window.
-	this->mainWindow = ZDLMainWindow::newInstance(ZDL_APPTITLE);
+	this->mainWindow = ZDLMainWindow::newInstance(ZDL_NAME" "ZDL_VERSION);
 	if( !this->mainWindow ) // Check if the object is okay.
 		throw "Couldn't create the mainWindow!";
 }

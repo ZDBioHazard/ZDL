@@ -52,7 +52,7 @@ ZDLAboutWindow* ZDLAboutWindow::newInstance( QWidget *parentWidget ){
 */
 ZDLAboutWindow::ZDLAboutWindow( QWidget *parentWidget ) : QDialog( parentWidget ){
 	// Set some window properties.
-	this->setWindowTitle(tr("About ZDL"));
+	this->setWindowTitle(tr("About")+" "ZDL_NAME);
 	this->setWindowIcon(QIcon(":/zdlicon"));
 
 	// Set up the main layout.
@@ -62,14 +62,15 @@ ZDLAboutWindow::ZDLAboutWindow( QWidget *parentWidget ) : QDialog( parentWidget 
 
 	// Display the logo at the top.
 	QHBoxLayout *layoutLogo = new QHBoxLayout();
-	QLabel      *labelLogo  = new QLabel("ZDL Logo", this);
-	QLabel      *labelTitle = new QLabel("v"ZDL_VERSION, this);
+	QLabel      *labelLogo  = new QLabel("Logo", this);
+	QLabel      *labelTitle = new QLabel(ZDL_NAME"\n"ZDL_VERSION, this);
 	                                     // The <b> tags are to make the &copy; work.
 	QLabel      *labelCopy  = new QLabel("<b>&copy; 2011 Ryan Turner / Vectec Software</b>", this);
 	if( !layoutLogo || !labelLogo || !labelTitle || !labelCopy )
 		throw "Couldn't create the logo area!";
 	layoutLogo->setSpacing(32); // Put some space between the logo and version.
 	labelLogo->setPixmap(QPixmap(":/zdlicon"));
+	labelTitle->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 	labelTitle->setFont(QFont("", 16)); // Bigger font.
 	labelCopy->setAlignment(Qt::AlignCenter);
 

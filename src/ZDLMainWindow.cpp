@@ -148,7 +148,7 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle, QWidget *parentWidget ) : QWi
 	// Create the buttons down at the bottom.
 	QHBoxLayout *layoutButtons = new QHBoxLayout();
 	QPushButton *buttonExit    = new QPushButton(tr("Exit"), this);
-	QPushButton *buttonZDL     = new QPushButton("ZDL", this);
+	QPushButton *buttonZDL     = new QPushButton(ZDL_NAME, this);
 	QPushButton *buttonLaunch  = new QPushButton(tr("Launch"), this);
 	// Make sure all the widgets got created properly.
 	if( !layoutButtons || !buttonExit   ||
@@ -167,12 +167,12 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle, QWidget *parentWidget ) : QWi
 
 	// Create the menu attached to the ZDL button.
 	// TODO: Include a tab reset menu.
-	QMenu   *menuZDL         = new QMenu("ZDL", buttonZDL);
+	QMenu   *menuZDL         = new QMenu(ZDL_NAME, buttonZDL);
 	QAction *actShowCommand  = new QAction(tr("S&how Command Line"), menuZDL);
 	QAction *actSavePreset   = new QAction(tr("&Save Preset"), menuZDL);
 	QAction *actLoadPreset   = new QAction(tr("&Load Preset"), menuZDL);
 	QAction *actConfigWindow = new QAction(tr("&Configuration"), menuZDL);
-	QAction *actAboutWindow  = new QAction(tr("&About ZDL"), menuZDL);
+	QAction *actAboutWindow  = new QAction(tr("&About")+" "ZDL_NAME, menuZDL);
 	if( !menuZDL       || !actShowCommand  || !actSavePreset ||
 	    !actLoadPreset || !actConfigWindow || !actAboutWindow )
 		throw "Couldn't create the ZDL button menus!";
