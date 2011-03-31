@@ -70,7 +70,7 @@ void ZDLTabMain::onFilesRemoveClicked( ){
 */
 ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// This tab be called Jimmy!
-	this->tabLabel = "General";
+	this->tabLabel = tr("General");
 
 	//
 	// NOTE: The indentation in this function sort-of
@@ -91,11 +91,11 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// Left Column.
 	// External Files list.
 	QVBoxLayout  *layoutFiles        = new QVBoxLayout();
-	QLabelLayout *labelFiles         = new QLabelLayout("External Files", this);
+	QLabelLayout *labelFiles         = new QLabelLayout(tr("External Files"), this);
 	        this->listFiles          = new QListWidget(this);
 	QHBoxLayout  *layoutFilesButtons = new QHBoxLayout();
-	QPushButton  *buttonFilesAdd     = new QPushButton("Add", this);
-	QPushButton  *buttonFilesRemove  = new QPushButton("Remove", this);
+	QPushButton  *buttonFilesAdd     = new QPushButton(tr("Add"), this);
+	QPushButton  *buttonFilesRemove  = new QPushButton(tr("Remove"), this);
 	if( !layoutFiles        || !labelFiles        ||
 	    !layoutFilesButtons || !this->listFiles   ||
 	    !buttonFilesAdd     || !buttonFilesRemove )
@@ -117,7 +117,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutColumns->addLayout(layoutRightColumn);
 
 		// Engine list.
-		QLabelLayout *labelEngines = new QLabelLayout("Game Engine", this);
+		QLabelLayout *labelEngines = new QLabelLayout(tr("Game Engine"), this);
 		        this->comboEngines = new QComboBox(this);
 		if( !labelEngines || !this->comboEngines )
 			throw "Couldn't create the Engines list!";
@@ -125,7 +125,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		layoutRightColumn->addLayout(labelEngines);
 
 		// IWAD list.
-		QLabelLayout *labelIWADs = new QLabelLayout("Game IWAD", this);
+		QLabelLayout *labelIWADs = new QLabelLayout(tr("Game IWAD"), this);
 		        this->listIWADs  = new QListWidget(this);
 		if( !labelIWADs || !this->listIWADs )
 			throw "Couldn't create the IWAD list!";
@@ -137,7 +137,7 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 		layoutRightColumn->addLayout(layoutWarpSkill);
 
 			// Warp box.
-			QLabelLayout *labelWarp = new QLabelLayout("Warp to Map", this);
+			QLabelLayout *labelWarp = new QLabelLayout(tr("Warp to Map"), this);
 			        this->editWarp  = new QLineEdit(this);
 			if( !labelWarp || !this->editWarp )
 				throw "Couldn't create the Warp box!";
@@ -146,20 +146,21 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 			layoutWarpSkill->addLayout(labelWarp);
 
 			// Skill box.
-			QLabelLayout *labelSkill = new QLabelLayout("Skill Level", this);
+			QLabelLayout *labelSkill = new QLabelLayout(tr("Skill Level"), this);
 			        this->comboSkill = new QComboBox(this);
 			if( !labelSkill || !this->comboSkill )
 				throw "Couldn't create the Skill box!";
 			// TODO: I don't like this list being here for some reason.
 			QStringList strSkills;
-			strSkills << "Very Easy" << "Easy" << "Normal" << "Hard" << "Stupid-Hard";
+			strSkills << tr("Very Easy") << tr("Easy") << tr("Normal")
+			          << tr("Hard") << tr("Very Hard");
 			this->comboSkill->addItems(strSkills);
 			this->comboSkill->setCurrentIndex(SKILL_NORMAL);
 			labelSkill->addWidget(this->comboSkill);
 			layoutWarpSkill->addLayout(labelSkill);
 
 	// Extra Args box.
-	QLabelLayout *labelExtraArgs = new QLabelLayout("Extra Command-Line Arguments", this);
+	QLabelLayout *labelExtraArgs = new QLabelLayout(tr("Extra Command-Line Arguments"), this);
 	        this->editExtraArgs  = new QLineEdit(this);
 	if( !labelExtraArgs || !this->editExtraArgs )
 		throw "Couldn't create the Extra Args box!";

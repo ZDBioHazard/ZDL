@@ -34,6 +34,8 @@
 * Main user interface class.
 */
 class ZDLTabMulti : public ZDLTab {
+	Q_OBJECT
+
 	public:
 	// Public Functions.
 		static ZDLTabMulti* newInstance( QWidget *parentWidget );

@@ -52,7 +52,7 @@ ZDLAboutWindow* ZDLAboutWindow::newInstance( QWidget *parentWidget ){
 */
 ZDLAboutWindow::ZDLAboutWindow( QWidget *parentWidget ) : QDialog( parentWidget ){
 	// Set some window properties.
-	this->setWindowTitle("About ZDL");
+	this->setWindowTitle(tr("About ZDL"));
 	this->setWindowIcon(QIcon(":/zdlicon"));
 
 	// Set up the main layout.
@@ -87,13 +87,13 @@ ZDLAboutWindow::ZDLAboutWindow( QWidget *parentWidget ) : QDialog( parentWidget 
 		// Yeah I know it's a fake list, but a HTML
 		// list weirds out at different font sizes.
 		"<p style=\"white-space: pre-wrap\">\n"
-			"<b>Special Thanks To:</b>\n"
+			"<b>"+tr("Special Thanks To:")+"</b>\n"
 			"  &bull; QBasicer\n"
 			"  &bull; Risen\n"
 			"  &bull; NeuralStunner\n"
 			"  &bull; Enjay\n"
-			"  &bull; The ZDoom forumers.\n"
-			"  &bull; The non-idle #zdoom users. ;)\n"
+			"  &bull; "+tr("The ZDoom forumers")+"\n"
+			"  &bull; "+tr("The non-idle #zdoom users")+" ;)\n"
 		"</p>", this);
 	if( !lineTop || !lineBottom || !labelThanks )
 		throw "Couldn't create the thanks label!";
@@ -106,7 +106,7 @@ ZDLAboutWindow::ZDLAboutWindow( QWidget *parentWidget ) : QDialog( parentWidget 
 	// Create the build info and button down at the bottom.
 	QHBoxLayout *layoutButton = new QHBoxLayout();
 	QLabel      *labelInfo    = new QLabel(ZDL_TIMESTAMP"\n"ZDL_PLATFORM, this);
-	QPushButton *buttonClose  = new QPushButton("Close", this);
+	QPushButton *buttonClose  = new QPushButton(tr("Close"), this);
 	// Make sure all the widgets got created properly.
 	if( !layoutButton || !labelInfo || !buttonClose )
 		throw "Couldn't create the info/button area!";

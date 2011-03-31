@@ -44,7 +44,7 @@ ZDLTabMulti* ZDLTabMulti::newInstance( QWidget *parentWidget ){
 */
 ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	// Set the tab name.
-	this->tabLabel = "Multiplayer";
+	this->tabLabel = tr("Multiplayer");
 
 	//
 	// NOTE: The indentation in this function sort-of
@@ -57,29 +57,30 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	this->setLayout(layoutTab);
 
 	// Game Mode / Players.
-	QLabelLayout *labelGameMode = new QLabelLayout("Game Mode", this);
+	QLabelLayout *labelGameMode = new QLabelLayout(tr("Game Mode"), this);
 	        this->comboGameMode = new QComboBox(this);
-	QLabelLayout *labelPlayers  = new QLabelLayout("Players", this);
+	QLabelLayout *labelPlayers  = new QLabelLayout(tr("Players"), this);
 	        this->spinPlayers   = new QSpinBox(this);
 	if( !labelGameMode || !this->comboGameMode ||
 	    !labelPlayers  || !this->spinPlayers   )
 		throw "Couldn't create the Mode/Players widgets!";
 	// TODO: I don't like this list being here for some reason.
 	QStringList strGameModes;
-	strGameModes << "Single-Player" << "Multi-Player: Co-Op" << "Multi-Player: Deathmatch";
+	strGameModes << tr("Single-Player")
+	             << tr("Multi-Player: Co-Op") << tr("Multi-Player: Deathmatch");
 	this->comboGameMode->addItems(strGameModes);
 	// TODO: This should be set by the port config eventually.
 	this->spinPlayers->setRange(0, 8);
-	this->spinPlayers->setSpecialValueText("Joining");
+	this->spinPlayers->setSpecialValueText(tr("Joining"));
 	labelGameMode->addWidget(this->comboGameMode);
 	layoutTab->addLayout(labelGameMode, 0, 0, 1, 2);
 	labelPlayers->addWidget(this->spinPlayers);
 	layoutTab->addLayout(labelPlayers, 0, 2, 1, 1);
 
 	// Server Hostname/IP / Server Port.
-	QLabelLayout *labelHost = new QLabelLayout("Server Hostname / IP", this);
+	QLabelLayout *labelHost = new QLabelLayout(tr("Server Hostname / IP"), this);
 	        this->editHost  = new QLineEdit(this);
-	QLabelLayout *labelPort = new QLabelLayout("Port", this);
+	QLabelLayout *labelPort = new QLabelLayout(tr("Port"), this);
 	        this->spinPort  = new QSpinBox(this);
 	if( !labelHost || !this->editHost ||
 	    !labelPort || !this->spinPort )
@@ -92,9 +93,9 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->addLayout(labelPort, 1, 2, 1, 1);
 
 	// Frag Limit / Time Limit.
-	QLabelLayout *labelFragLimit = new QLabelLayout("Frag Limit", this);
+	QLabelLayout *labelFragLimit = new QLabelLayout(tr("Frag Limit"), this);
 	        this->spinFragLimit  = new QSpinBox(this);
-	QLabelLayout *labelTimeLimit = new QLabelLayout("Time Limit", this);
+	QLabelLayout *labelTimeLimit = new QLabelLayout(tr("Time Limit"), this);
 	        this->spinTimeLimit  = new QSpinBox(this);
 	if( !labelFragLimit || !this->spinFragLimit ||
 	    !labelTimeLimit || !this->spinTimeLimit )
@@ -107,8 +108,8 @@ ZDLTabMulti::ZDLTabMulti( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	layoutTab->addLayout(labelTimeLimit, 1, 3, 1, 1);
 
 	// Magic / Enable Cheats.
-	this->checkMagic  = new QCheckBox("Magically Fix Everything", this);
-	this->checkCheats = new QCheckBox("Enable Cheats", this);
+	this->checkMagic  = new QCheckBox(tr("Magically Fix Everything"), this);
+	this->checkCheats = new QCheckBox(tr("Enable Cheats"), this);
 	if( !this->checkMagic || !this->checkCheats )
 		throw "Couldn't create the Checkboxes!";
 	layoutTab->addWidget(this->checkMagic, 2, 0, 1, 2);
