@@ -28,10 +28,10 @@
 *
 * @return New ZDLMainWindow object on success, NULL on failure.
 */
-ZDLMainWindow* ZDLMainWindow::newInstance( QString windowTitle, QWidget *parentWidget ){
+ZDLMainWindow* ZDLMainWindow::newInstance( QWidget *parentWidget ){
 	qDebug() << "ZDLMainWindow::newInstance: Creating a new ZDLMainWindow instance.";
 	try {
-		ZDLMainWindow *newMainWindow = new ZDLMainWindow(windowTitle, parentWidget);
+		ZDLMainWindow *newMainWindow = new ZDLMainWindow(parentWidget);
 		return newMainWindow;
 	} catch ( char const *except ){
 		qCritical() << "ZDLMainWindow::newInstance: Caught exception:" << except;
@@ -118,9 +118,9 @@ void ZDLMainWindow::onMenuAboutWindow( ){
 *
 * @param  windowTitle  The new window's title.
 */
-ZDLMainWindow::ZDLMainWindow( QString windowTitle, QWidget *parentWidget ) : QWidget( parentWidget ){
+ZDLMainWindow::ZDLMainWindow( QWidget *parentWidget ) : QWidget( parentWidget ){
 	// Set some window properties.
-	this->setWindowTitle(windowTitle);
+	this->setWindowTitle(ZDL_NAME" "ZDL_VERSION);
 	this->setWindowIcon(QIcon(":/zdlicon"));
 
 	// Initialize member variables that won't be used in this function.

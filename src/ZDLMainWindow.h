@@ -48,7 +48,7 @@ class ZDLMainWindow : public QWidget {
 
 	public:
 	// Public Functions.
-		static ZDLMainWindow* newInstance( QString windowTitle, QWidget *parentWidget = NULL );
+		static ZDLMainWindow* newInstance( QWidget *parentWidget = NULL );
 
 	protected slots:
 	// Buttons.
@@ -71,7 +71,7 @@ class ZDLMainWindow : public QWidget {
 		ZDLTab *tabMulti; ///< Multiplayer Tab
 
 	// Protected Functions.
-		ZDLMainWindow( QString windowTitle, QWidget *parentWidget );
+		ZDLMainWindow( QWidget *parentWidget );
 };
 
 #endif // ZDLMAINWINDOW_H
