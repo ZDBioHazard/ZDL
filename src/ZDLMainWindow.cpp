@@ -132,7 +132,7 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle, QWidget *parentWidget ) : QWi
 	this->setLayout(layoutMain);
 
 	// Set-up the tab group.
-	tabsMain = new QTabWidget(this);
+	QTabWidget *tabsMain = new QTabWidget(this);
 	layoutMain->addWidget(tabsMain);
 
 	// Create the interface tabs.
@@ -147,12 +147,12 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle, QWidget *parentWidget ) : QWi
 
 	// Create the buttons down at the bottom.
 	QHBoxLayout *layoutButtons = new QHBoxLayout();
-	       this->buttonExit    = new QPushButton("Exit", this);
-	       this->buttonZDL     = new QPushButton("ZDL", this);
-	       this->buttonLaunch  = new QPushButton("Launch", this);
+	QPushButton *buttonExit    = new QPushButton("Exit", this);
+	QPushButton *buttonZDL     = new QPushButton("ZDL", this);
+	QPushButton *buttonLaunch  = new QPushButton("Launch", this);
 	// Make sure all the widgets got created properly.
-	if( !layoutButtons   || !this->buttonExit   ||
-	    !this->buttonZDL || !this->buttonLaunch )
+	if( !layoutButtons || !buttonExit   ||
+	    !buttonZDL     || !buttonLaunch )
 		throw "Couldn't create the buttons!";
 	// Aaand add them to the layout.
 	layoutButtons->addWidget(buttonExit);
@@ -162,36 +162,35 @@ ZDLMainWindow::ZDLMainWindow( QString windowTitle, QWidget *parentWidget ) : QWi
 	layoutMain->addLayout(layoutButtons);
 
 	// Connect the button signals.
-	connect(this->buttonLaunch, SIGNAL(clicked()), this, SLOT(onLaunchClicked()));
-	connect(this->buttonExit,   SIGNAL(clicked()), this, SLOT(onExitClicked()));
+	connect(buttonLaunch, SIGNAL(clicked()), this, SLOT(onLaunchClicked()));
+	connect(buttonExit,   SIGNAL(clicked()), this, SLOT(onExitClicked()));
 
 	// Create the menu attached to the ZDL button.
 	// TODO: Include a tab reset menu.
-	this->menuZDL         = new QMenu("ZDL", this->buttonZDL);
-	this->actShowCommand  = new QAction("S&how Command Line", this->menuZDL);
-	this->actSavePreset   = new QAction("&Save Preset", this->menuZDL);
-	this->actLoadPreset   = new QAction("&Load Preset", this->menuZDL);
-	this->actConfigWindow = new QAction("&Configuration", this->menuZDL);
-	this->actAboutWindow  = new QAction("&About ZDL", this->menuZDL);
-	if( !this->menuZDL         || !this->actShowCommand ||
-	    !this->actSavePreset   || !this->actLoadPreset  ||
-	    !this->actConfigWindow || !this->actAboutWindow )
+	QMenu   *menuZDL         = new QMenu("ZDL", buttonZDL);
+	QAction *actShowCommand  = new QAction("S&how Command Line", menuZDL);
+	QAction *actSavePreset   = new QAction("&Save Preset", menuZDL);
+	QAction *actLoadPreset   = new QAction("&Load Preset", menuZDL);
+	QAction *actConfigWindow = new QAction("&Configuration", menuZDL);
+	QAction *actAboutWindow  = new QAction("&About ZDL", menuZDL);
+	if( !menuZDL       || !actShowCommand  || !actSavePreset ||
+	    !actLoadPreset || !actConfigWindow || !actAboutWindow )
 		throw "Couldn't create the ZDL button menus!";
-	this->menuZDL->addAction(this->actShowCommand);
-	this->menuZDL->addSeparator();
-	this->menuZDL->addAction(this->actSavePreset);
-	this->menuZDL->addAction(this->actLoadPreset);
-	this->menuZDL->addSeparator();
-	this->menuZDL->addAction(this->actConfigWindow);
-	this->menuZDL->addAction(this->actAboutWindow);
-	this->buttonZDL->setMenu(menuZDL);
+	menuZDL->addAction(actShowCommand);
+	menuZDL->addSeparator();
+	menuZDL->addAction(actSavePreset);
+	menuZDL->addAction(actLoadPreset);
+	menuZDL->addSeparator();
+	menuZDL->addAction(actConfigWindow);
+	menuZDL->addAction(actAboutWindow);
+	buttonZDL->setMenu(menuZDL);
 
 	// Connect the menu signals.
-	connect(this->actShowCommand,  SIGNAL(triggered()), this, SLOT(onMenuShowCommand()));
-	connect(this->actSavePreset,   SIGNAL(triggered()), this, SLOT(onMenuSavePreset()));
-	connect(this->actLoadPreset,   SIGNAL(triggered()), this, SLOT(onMenuLoadPreset()));
-	connect(this->actConfigWindow, SIGNAL(triggered()), this, SLOT(onMenuConfigWindow()));
-	connect(this->actAboutWindow,  SIGNAL(triggered()), this, SLOT(onMenuAboutWindow()));
+	connect(actShowCommand,  SIGNAL(triggered()), this, SLOT(onMenuShowCommand()));
+	connect(actSavePreset,   SIGNAL(triggered()), this, SLOT(onMenuSavePreset()));
+	connect(actLoadPreset,   SIGNAL(triggered()), this, SLOT(onMenuLoadPreset()));
+	connect(actConfigWindow, SIGNAL(triggered()), this, SLOT(onMenuConfigWindow()));
+	connect(actAboutWindow,  SIGNAL(triggered()), this, SLOT(onMenuAboutWindow()));
 
 	// Well now, wasn't that fun? Time to prep the window and show it.
 	// TODO: The window position and size should be pulled from the config.

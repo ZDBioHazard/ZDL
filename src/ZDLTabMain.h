@@ -58,8 +58,6 @@ class ZDLTabMain : public ZDLTab {
 
 	// Protected Widgets.
 		QListWidget *listFiles;         ///< Files list.
-		QPushButton *buttonFilesAdd;    ///< "Add" button on the Files list.
-		QPushButton *buttonFilesRemove; ///< "Remove" button on the Files list.
 		QComboBox   *comboEngines;      ///< Engines selector.
 		QListWidget *listIWADs;         ///< IWAD list.
 		QLineEdit   *editWarp;          ///< Warp box.

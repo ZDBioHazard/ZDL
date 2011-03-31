@@ -94,18 +94,18 @@ ZDLTabMain::ZDLTabMain( QWidget *parentWidget ) : ZDLTab( parentWidget ){
 	QLabelLayout *labelFiles         = new QLabelLayout("External Files", this);
 	        this->listFiles          = new QListWidget(this);
 	QHBoxLayout  *layoutFilesButtons = new QHBoxLayout();
-	        this->buttonFilesAdd     = new QPushButton("Add", this);
-	        this->buttonFilesRemove  = new QPushButton("Remove", this);
-	if( !layoutFiles          || !labelFiles              ||
-	    !layoutFilesButtons   || !this->listFiles         ||
-	    !this->buttonFilesAdd || !this->buttonFilesRemove )
+	QPushButton  *buttonFilesAdd     = new QPushButton("Add", this);
+	QPushButton  *buttonFilesRemove  = new QPushButton("Remove", this);
+	if( !layoutFiles        || !labelFiles        ||
+	    !layoutFilesButtons || !this->listFiles   ||
+	    !buttonFilesAdd     || !buttonFilesRemove )
 		throw "Couldn't create the External Files list!";
 	layoutFiles->addLayout(labelFiles);
 	labelFiles->addWidget(this->listFiles);
 	layoutFiles->addLayout(layoutFilesButtons);
-	layoutFilesButtons->addWidget(this->buttonFilesAdd);
+	layoutFilesButtons->addWidget(buttonFilesAdd);
 	layoutFilesButtons->addStretch();
-	layoutFilesButtons->addWidget(this->buttonFilesRemove);
+	layoutFilesButtons->addWidget(buttonFilesRemove);
 	layoutColumns->addLayout(layoutFiles);
 
 	// Connect the button signals.

@@ -66,23 +66,9 @@ class ZDLMainWindow : public QWidget {
 	// Protected Windows.
 		ZDLAboutWindow *aboutWindow; ///< About window.
 
-	// Protected Tab Objects
+	// Protected Widgets.
 		ZDLTab *tabMain;  ///< General Tab
 		ZDLTab *tabMulti; ///< Multiplayer Tab
-
-	// Protected Widgets.
-		QTabWidget  *tabsMain;     ///< Tab group.
-		QPushButton *buttonExit;   ///< Exit button.
-		QPushButton *buttonZDL;    ///< ZDL button.
-		QPushButton *buttonLaunch; ///< Launch button.
-		QMenu       *menuZDL;      ///< ZDL button menu.
-
-	// Protected Actions.
-		QAction *actShowCommand;  ///< Show Command.
-		QAction *actSavePreset;   ///< Save Preset.
-		QAction *actLoadPreset;   ///< Load Preset.
-		QAction *actConfigWindow; ///< Configuration.
-		QAction *actAboutWindow;  ///< About ZDL.
 
 	// Protected Functions.
 		ZDLMainWindow( QString windowTitle, QWidget *parentWidget );
