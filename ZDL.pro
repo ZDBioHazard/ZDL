@@ -29,6 +29,7 @@ HEADERS = \
 	Version.h QLabelLayout.h ZDLApp.h \
 	ZDLMainWindow.h ZDLAboutWindow.h \
 	ZDLTab.h ZDLTabMain.h ZDLTabMulti.h \
+	generated.h
 
 SOURCES = \
 	ZDL.cpp ZDLApp.cpp \
@@ -40,40 +41,12 @@ RESOURCES = res/ZDL.qrc
 # Use faster strings.
 DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
-# Nifty build information defines for Versions.h.
-ZDL_VERSION   = $$system("git describe --tags --always")
-!win32{
-	!isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"$${ZDL_VERSION}\\\"\""
-}
-win32{
-	!isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"git\\\"\""
-}
+FOO = $$system("bash generate.sh $${QT_VERSION}}");
 
-# Windows builds do not like date.  It cases qmake to hang.
-!win32{
-	ZDL_TIMESTAMP = $$system("date +'%b %d %Y %H:%M:%S %Z'")
-}
-win32{
-	ZDL_TIMESTAMP = "UNKNOWN"
-}
+#QMAKE_CXXFLAGS += -I.
+QMAKE_CXXFLAGS += -include generated.h
 
-!isEmpty(ZDL_TIMESTAMP):DEFINES += ZDL_TIMESTAMP="\"\\\"$${ZDL_TIMESTAMP}\\\"\""
-
-# Platform is special because we always want the Qt version.
-!win32{
-	ZDL_PLATFORM  = $$system("uname -mo")
-}
-win32{
-	ZDL_PLATFORM = "Windows"
-}
-isEmpty(ZDL_PLATFORM):ZDL_PLATFORM = "Unknown Platform"
-
-!win32{
-	DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
-}
-win32{
-	DEFINES += ZDL_PLATFORM="\"\\\"Windows Qt\\\"\""
-}
+INCLUDEPATH += ./
 
 # Disable debug messages in release mode.
 CONFIG(release, debug|release){
