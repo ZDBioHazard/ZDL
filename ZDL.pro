@@ -44,7 +44,14 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 ZDL_VERSION   = $$system("git describe --tags --always")
 !isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"$${ZDL_VERSION}\\\"\""
 
-ZDL_TIMESTAMP = $$system("date +'%b %d %Y %H:%M:%S %Z'")
+# Windows builds do not like date.  It cases qmake to hang.
+!win32{
+	ZDL_TIMESTAMP = $$system("date +'%b %d %Y %H:%M:%S %Z'")
+}
+win32{
+	ZDL_TIMESTAMP = "UNKNOWN"
+}
+
 !isEmpty(ZDL_TIMESTAMP):DEFINES += ZDL_TIMESTAMP="\"\\\"$${ZDL_TIMESTAMP}\\\"\""
 
 # Platform is special because we always want the Qt version.
