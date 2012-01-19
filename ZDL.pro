@@ -55,7 +55,12 @@ win32{
 !isEmpty(ZDL_TIMESTAMP):DEFINES += ZDL_TIMESTAMP="\"\\\"$${ZDL_TIMESTAMP}\\\"\""
 
 # Platform is special because we always want the Qt version.
-ZDL_PLATFORM  = $$system("uname -mo")
+!win32{
+	ZDL_PLATFORM  = $$system("uname -mo")
+}
+win32{
+	ZDL_PLATFORM = "Windows"
+}
 isEmpty(ZDL_PLATFORM):ZDL_PLATFORM = "Unknown Platform"
 DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
 
