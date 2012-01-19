@@ -42,7 +42,12 @@ DEFINES += QT_USE_FAST_CONCATENATION QT_USE_FAST_OPERATOR_PLUS
 
 # Nifty build information defines for Versions.h.
 ZDL_VERSION   = $$system("git describe --tags --always")
-!isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"$${ZDL_VERSION}\\\"\""
+!win32{
+	!isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"$${ZDL_VERSION}\\\"\""
+}
+win32{
+	!isEmpty(ZDL_VERSION):DEFINES += ZDL_VERSION="\"\\\"git\\\"\""
+}
 
 # Windows builds do not like date.  It cases qmake to hang.
 !win32{
@@ -55,9 +60,20 @@ win32{
 !isEmpty(ZDL_TIMESTAMP):DEFINES += ZDL_TIMESTAMP="\"\\\"$${ZDL_TIMESTAMP}\\\"\""
 
 # Platform is special because we always want the Qt version.
-ZDL_PLATFORM  = $$system("uname -mo")
+!win32{
+	ZDL_PLATFORM  = $$system("uname -mo")
+}
+win32{
+	ZDL_PLATFORM = "Windows"
+}
 isEmpty(ZDL_PLATFORM):ZDL_PLATFORM = "Unknown Platform"
-DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
+
+!win32{
+	DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
+}
+win32{
+	DEFINES += ZDL_PLATFORM="\"Windows Qt\""
+}
 
 # Disable debug messages in release mode.
 CONFIG(release, debug|release){
