@@ -62,7 +62,13 @@ win32{
 	ZDL_PLATFORM = "Windows"
 }
 isEmpty(ZDL_PLATFORM):ZDL_PLATFORM = "Unknown Platform"
-DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
+
+!win32{
+	DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
+}
+win32{
+	DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} - Qt $${QT_VERSION}\\\"\""
+}
 
 # Disable debug messages in release mode.
 CONFIG(release, debug|release){
