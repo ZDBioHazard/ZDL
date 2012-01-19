@@ -72,7 +72,7 @@ isEmpty(ZDL_PLATFORM):ZDL_PLATFORM = "Unknown Platform"
 	DEFINES += ZDL_PLATFORM="\"\\\"$${ZDL_PLATFORM} (Qt $${QT_VERSION})\\\"\""
 }
 win32{
-	DEFINES += ZDL_PLATFORM="\"Windows Qt\""
+	DEFINES += ZDL_PLATFORM="\"\\\"Windows Qt\\\"\""
 }
 
 # Disable debug messages in release mode.
