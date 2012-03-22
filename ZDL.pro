@@ -46,7 +46,7 @@ FOO = $$system("bash generate.sh $${QT_VERSION}}");
 #QMAKE_CXXFLAGS += -I.
 QMAKE_CXXFLAGS += -include generated.h
 win32{
-	message("Statically compiling libstdc++ and libgcc");
+	message("Statically compiling libstdc++ and libgcc")
 	QMAKE_CXXFLAGS += -static-libgcc -static-libstdc++
 }
 INCLUDEPATH += ./
