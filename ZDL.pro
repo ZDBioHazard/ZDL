@@ -48,6 +48,7 @@ QMAKE_CXXFLAGS += -include generated.h
 win32{
 	message("Statically compiling libstdc++ and libgcc")
 	QMAKE_CXXFLAGS += -static-libgcc -static-libstdc++
+	QMAKE_LFLAGS += -static
 }
 INCLUDEPATH += ./
 
